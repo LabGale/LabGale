@@ -1,0 +1,246 @@
+export interface FeatureDetail {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  shortDescription: string;
+  fullDescription: string;
+  problemSolved: string;
+  howItWorks: string[];
+  benefits: string[];
+  icon: string;
+  relatedSlugs: string[];
+}
+
+export const FEATURES: FeatureDetail[] = [
+  {
+    slug: "sostanze",
+    title: "Sostanze e Materie Prime",
+    shortTitle: "Materie Prime",
+    shortDescription: "Anagrafica completa delle sostanze con fattori di correzione, lotti, scadenze e giacenze.",
+    fullDescription: "Gestisci l'anagrafica di tutte le materie prime presenti in laboratorio. Registra caratteristiche chimiche, titolo o purezza, fattore di correzione, forma farmaceutica, fornitore di provenienza, lotti acquistati e date di scadenza con la massima precisione.",
+    problemSolved: "Elimina la frammentazione delle informazioni su fogli cartacei o tabelle disordinate, riducendo il rischio di utilizzare materie prime con dati di purezza non corretti o lotti non conformi.",
+    howItWorks: [
+      "Inserimento o ricerca immediata per denominazione chimica o commerciale",
+      "Configurazione di purezza, titolo, fattore di correzione e unità di misura",
+      "Associazione diretta dei lotti con data di carico, lotto produttore e scadenza",
+      "Collegamento immediato a schede tecniche e documenti (DDT, CoA, SDS)",
+    ],
+    benefits: [
+      "Dati sempre aggiornati e consultabili in pochi istanti",
+      "Calcolo automatico del fattore di correzione nei fogli di lavorazione",
+      "Tracciabilità puntuale di ogni lotto impiegato",
+    ],
+    icon: "FlaskConical",
+    relatedSlugs: ["schede-tecniche", "documentazione", "giacenze"],
+  },
+  {
+    slug: "schede-tecniche",
+    title: "Schede Tecniche Sostanze e Formule",
+    shortTitle: "Schede Tecniche",
+    shortDescription: "Consultazione di parametri chimico-fisici, posologie, incompatibilità e formule magistrali/officinali.",
+    fullDescription: "Ogni sostanza e formula ha la sua scheda tecnica strutturata. Visualizza proprietà chimico-fisiche, intervalli di pH, solubilità, precauzioni di manipolazione, incompatibilità note e istruzioni per l'allestimento di preparazioni magistrali e officinali.",
+    problemSolved: "Evita di dover sfogliare voluminosi testi cartacei o ricercare PDF dispersi prima di iniziare una nuova formulazione in laboratorio.",
+    howItWorks: [
+      "Schede tecniche complete sia per materie prime che per formulazioni magistrali/officinali",
+      "Note operative per la conservazione corretta (luce, temperatura, umidità)",
+      "Avvertenze di incompatibilità con altri principi attivi ed eccipienti",
+      "Generazione ed esportazione in formato PDF pronto per la consultazione o archiviazione",
+    ],
+    benefits: [
+      "Maggiore sicurezza operativa durante l'allestimento",
+      "Consultazione contestuale senza interrompere il flusso di lavoro",
+      "Standardizzazione delle procedure operative di laboratorio",
+    ],
+    icon: "FileSpreadsheet",
+    relatedSlugs: ["sostanze", "fogli-lavorazione", "documentazione"],
+  },
+  {
+    slug: "fogli-lavorazione",
+    title: "Fogli di Lavorazione Magistrali e Officinali",
+    shortTitle: "Fogli di Lavorazione",
+    shortDescription: "Compilazione guidata a norma NBP con calcolo automatico tara/netto, eccipienti e scarico lotti.",
+    fullDescription: "Il cuore operativo del laboratorio galenico: redigi fogli di lavorazione sia magistrali (su ricetta medica) che officinali (su formulari ufficiali). Il software gestisce il calcolo automatico dei dosaggi, il fattore di correzione, la tara dei contenitori, lo scarico dai lotti in giacenza e l'archiviazione cronologica.",
+    problemSolved: "Azzera gli errori matematici di calcolo manuale su carta, previene la dimenticanza di dati obbligatori per legge ed elimina faldoni cartacei ingombranti.",
+    howItWorks: [
+      "Selezione della forma farmaceutica (capsule, creme, sciroppi, soluzioni, polveri, tisane, ecc.)",
+      "Composizione della formula con prelievo automatico dai lotti attivi a magazzino",
+      "Calcolo automatico di eccipienti, volume o massa teorica e fattori di correzione",
+      "Registrazione controlli, firma dell'operatore ed esportazione del foglio PDF conforme a NBP",
+    ],
+    benefits: [
+      "Velocità e precisione nella redazione di formule magistrali e officinali",
+      "Scarico automatico e tracciabile dei lotti dal magazzino",
+      "Conformità garantita alle Norme di Buona Preparazione della Farmacopea Ufficiale",
+    ],
+    icon: "ClipboardCheck",
+    relatedSlugs: ["sostanze", "controllo-capsule", "preventivi", "etichette"],
+  },
+  {
+    slug: "documentazione",
+    title: "Triade Documentale: DDT, Certificati e SDS",
+    shortTitle: "Documenti Sostanze",
+    shortDescription: "Gestione integrata di DDT, CoA e SDS con download automatico dai portali dei fornitori.",
+    fullDescription: "Gestione centralizzata dei tre documenti essenziali per ogni materia prima: Documenti di Trasporto (DDT), Certificati di Analisi (CoA) e Schede di Sicurezza (SDS). Include lo scaricamento automatico dai portali ufficiali dei principali distributori o il caricamento manuale, rispettando il vincolo di conservazione NBP (6 mesi dopo la chiusura del lotto).",
+    problemSolved: "Elimina la ricerca manuale e il download dispersivo dei certificati sui portali dei singoli fornitori, rendendo ogni documento reperibile in un clic durante un'ispezione.",
+    howItWorks: [
+      "Download e aggiornamento automatico dei certificati di analisi dai portali dei fornitori (ACEF, Fagron, Galeno, Farmalabor, Farmarete, Esperis)",
+      "Gestione a 3 slot per ogni registrazione: DDT, Certificato di Analisi e SDS",
+      "Filtri intelligenti per individuare rapidamente registrazioni con documenti mancanti",
+      "Regola di conservazione a norma: eliminazione permessa solo dopo 6 mesi dalla chiusura dell'ultimo pezzo",
+    ],
+    benefits: [
+      "Risparmio di decine di ore nel reperimento dei certificati d'analisi",
+      "Laboratorio sempre pronto e inappuntabile in caso di ispezione sanitaria",
+      "Documenti associati direttamente a ciascun lotto e fornitore",
+    ],
+    icon: "FolderArchive",
+    relatedSlugs: ["sostanze", "fornitori", "fogli-lavorazione"],
+  },
+  {
+    slug: "controllo-capsule",
+    title: "Controllo Qualità Uniformità di Massa Capsule",
+    shortTitle: "Uniformità Capsule",
+    shortDescription: "Test gravimetrico su 20 capsule secondo criteri Farmacopea Ufficiale con calcolo RSD e limiti FU.",
+    fullDescription: "Modulo scientifico dedicato al controllo di qualità obbligatorio per le capsule rigide secondo le Norme di Buona Preparazione e la Farmacopea Ufficiale. Inserisci i pesi di 20 capsule e ottieni istantaneamente l'analisi statistica completa: peso medio, deviazione standard, deviazione standard relativa (RSD), limiti di tolleranza ±5% e ±10%, test Average Weight e verbale PDF di conformità.",
+    problemSolved: "Sostituisce calcoli manuali complessi e fogli di calcolo esterni non certificati, fornendo una valutazione immediata di conformità della preparazione galenica.",
+    howItWorks: [
+      "Inserimento rapido dei pesi sperimentali delle 20 capsule campionate",
+      "Calcolo matematico immediato di media, deviazione standard e RSD",
+      "Verifica automatica del rispetto delle soglie di tolleranza della Farmacopea (±5% e ±10%)",
+      "Generazione immediata del verbale di controllo qualità in formato PDF allegabile al foglio di lavorazione",
+    ],
+    benefits: [
+      "Totale conformità ai controlli di qualità richiesti dalla Farmacopea Ufficiale",
+      "Verifica in tempo reale dell'omogeneità di riempimento prima della dispensazione",
+      "Verbale di collaudo analitico stampabile e archiviabile digitalmente",
+    ],
+    icon: "Scale",
+    relatedSlugs: ["fogli-lavorazione", "preventivi", "etichette"],
+  },
+  {
+    slug: "preventivi",
+    title: "Tariffazione Nazionale e Preventivi",
+    shortTitle: "Tariffazione e Prezzi",
+    shortDescription: "Calcolo automatico secondo la Tariffa Nazionale dei Medicinali (DM 22/09/2017) e preventivi per i pazienti.",
+    fullDescription: "Calcola il prezzo corretto di ogni preparazione in modo automatico e conforme alla Tariffa Nazionale dei Medicinali. Il motore applica l'onorario professionale per forma farmaceutica, le operazioni tecnologiche eseguite, i supplementi per sostanze velenose, stupefacenti o dopanti, i costi dei recipienti, i diritti addizionali e l'IVA, generando sia la tariffazione ufficiale sia il preventivo trasparente per il paziente.",
+    problemSolved: "Evita sanzioni per tariffazioni errate e calcoli manuali laboriosi delle tabelle tariffarie, offrendo al cliente un preventivo immediato e professionale.",
+    howItWorks: [
+      "Abbinamento automatico della forma farmaceutica alle categorie della Tariffa Nazionale",
+      "Selezione delle operazioni tecnologiche consigliate o personalizzate",
+      "Applicazione automatica di supplementi (sostanze velenose, stupefacenti, dopanti, lavoro notturno/festivo)",
+      "Emissione del foglio di tariffazione ufficiale e del preventivo chiaro per il paziente in PDF",
+    ],
+    benefits: [
+      "Tariffazione legalmente ineccepibile e trasparente",
+      "Calcolo istantaneo del preventivo direttamente al banco farmacia",
+      "Passaggio diretto dal preventivo accettato al foglio di lavorazione",
+    ],
+    icon: "Calculator",
+    relatedSlugs: ["fogli-lavorazione", "sostanze", "controllo-capsule"],
+  },
+  {
+    slug: "etichette",
+    title: "Stampa Etichette Galeniche Termiche",
+    shortTitle: "Etichette Termiche",
+    shortDescription: "Stampa su carta termica 57×31 mm con verifica bloccante dei dati obbligatori NBP e codici QR.",
+    fullDescription: "Stampa le etichette galeniche direttamente su stampanti termiche (formato standard 57×31 mm o personalizzato). Il sistema include una validazione preventiva e bloccante: rileva all'istante se mancano dati obbligatori per legge (avvertenze, data, posologia, conservazione, farmacista preparatore, prezzo) e permette di scegliere tra 4 layout grafici con stampa di codici QR.",
+    problemSolved: "Elimina il rischio di etichette non a norma di legge e l'uso di fogli A4 da ritagliare, offrendo etichette termiche professionali e resistenti.",
+    howItWorks: [
+      "Selezione della preparazione dal registro dei fogli di lavorazione",
+      "Controllo automatico di conformità normativa dei dati inseriti con avviso visivo",
+      "Scelta del template (Automatico, Standard, Compatto, Ridotto) con o senza codice QR",
+      "Anteprima a video e invio rapido alla stampante termica per stampa singola o in batch",
+    ],
+    benefits: [
+      "Zero rischio di sanzioni per etichette prive dei requisiti di legge",
+      "Formato standard per rotoli termici 57×31 mm ideale per boccette e flaconi",
+      "Stampa immediata senza spreco di carta o inchiostro",
+    ],
+    icon: "Tag",
+    relatedSlugs: ["fogli-lavorazione", "preventivi", "controllo-capsule"],
+  },
+  {
+    slug: "giacenze",
+    title: "Giacenze, Magazzino e Scadenze",
+    shortTitle: "Giacenze e Lotti",
+    shortDescription: "Controllo in tempo reale di scorte, multi-lotto, soglie minime di riordino e scadenze imminenti.",
+    fullDescription: "Pieno controllo del magazzino del laboratorio galenico. Ogni carico viene registrato con lotto, fornitore e data di scadenza; ogni preparazione allestita preleva e scarica automaticamente la quantità corretta. Avvisi visivi segnalano le scorte sotto la soglia minima e le materie prime prossime alla scadenza.",
+    problemSolved: "Elimina le brutte sorprese di sostanze esaurite all'arrivo di una ricetta urgente o materie prime scadute dimenticate sugli scaffali del laboratorio.",
+    howItWorks: [
+      "Registrazione rapida del carico con gestione di lotti multipli per la stessa sostanza",
+      "Scarico automatico dal lotto durante l'allestimento del foglio di lavorazione",
+      "Avvisi visivi per le sostanze sotto il livello di scorta minima configurato",
+      "Monitoraggio scadenze a 30/60 giorni per evitare sprechi e utilizzi non conformi",
+    ],
+    benefits: [
+      "Magazzino sempre sincronizzato con la reale attività di laboratorio",
+      "Drastica riduzione dello spreco di materie prime scadute",
+      "Tracciabilità inequivocabile richiesta in fase ispettiva",
+    ],
+    icon: "Boxes",
+    relatedSlugs: ["sostanze", "fogli-lavorazione", "fornitori"],
+  },
+  {
+    slug: "registro-sostanze",
+    title: "Registro Sostanze e Resoconto Dopanti",
+    shortTitle: "Registro e Dopanti",
+    shortDescription: "Registro cronologico di carico/scarico e riepilogo annuale dopanti per la trasmissione al Ministero.",
+    fullDescription: "Gestione del registro cronologico delle sostanze del laboratorio e automazione per il resoconto annuale obbligatorio delle preparazioni contenenti principi attivi soggetti a disciplina antidoping (Legge 376/2000). Genera il prospetto riepilogativo per la trasmissione annuale al Ministero della Salute.",
+    problemSolved: "Semplifica adempimenti normativi rigorosi che, se gestiti manualmente a fine anno, richiedono giorni di lavoro e presentano alto rischio di sviste formali.",
+    howItWorks: [
+      "Tracciamento puntuale delle movimentazioni di carico e scarico di ogni materia prima",
+      "Identificazione automatica delle sostanze appartenenti alle classi dopanti",
+      "Generazione del prospetto riepilogativo per la trasmissione annuale al Ministero della Salute",
+      "Esportazione pulita e ordinata dei dati necessari per la relazione di fine anno",
+    ],
+    benefits: [
+      "Massima serenità e certezza del dato in caso di controlli ispettivi",
+      "Risparmio di ore di lavoro durante la chiusura del resoconto annuale",
+      "Archivio storico delle movimentazioni sempre consultabile e stampabile",
+    ],
+    icon: "ShieldAlert",
+    relatedSlugs: ["sostanze", "fogli-lavorazione", "documentazione"],
+  },
+  {
+    slug: "banca-dati-aifa",
+    title: "Banca Dati Farmaci AIFA & Carenze",
+    shortTitle: "Prontuario AIFA",
+    shortDescription: "Consultazione specialità medicinali, codici ATC, regimi di ricetta, carenze e download FI/RCP.",
+    fullDescription: "Modulo per la consultazione libera del prontuario dei farmaci autorizzati in Italia (AIFA). Ricerca istantaneamente per nome o principio attivo, verifica la classificazione ATC, i regimi di fornitura (RR, RNR, OSP, SOP, OTC), monitora lo stato dei farmaci carenti e scarica direttamente Foglietto Illustrativo (FI) e RCP.",
+    problemSolved: "Fornisce al farmacista preparatore uno strumento immediato per verificare dosaggi, indicazioni e disponibilità commerciale di specialità medicinali da allestire come galenici in caso di carenza.",
+    howItWorks: [
+      "Ricerca rapida nel database farmaci AIFA con filtri su ATC e principi attivi",
+      "Visualizzazione del regime di dispensazione (ricetta medica ripetibile, non ripetibile, ospedaliera, ecc.)",
+      "Segnalazione dello stato di carenza sul mercato nazionale",
+      "Apertura e download con un clic del Foglietto Illustrativo e del Riassunto Caratteristiche Prodotto (RCP)",
+    ],
+    benefits: [
+      "Supporto decisivo nell'allestimento di galenici per farmaci carenti",
+      "Verifica immediata del regime di ricetta richiesto",
+      "Consultazione di FI e RCP senza dover navigare su banche dati esterne",
+    ],
+    icon: "Pill",
+    relatedSlugs: ["sostanze", "schede-tecniche", "fogli-lavorazione"],
+  },
+  {
+    slug: "fornitori",
+    title: "Archivio e Registro Fornitori",
+    shortTitle: "Fornitori",
+    shortDescription: "Anagrafica produttori e distributori con storico carichi e credenziali di accesso sicure.",
+    fullDescription: "Archivio centralizzato per tutti i fornitori di materie prime, eccipienti e materiali di confezionamento. Gestisci recapiti, partita IVA, contatti tecnici e credenziali per il download automatico dei documenti protette nel portachiavi di sistema.",
+    problemSolved: "Centralizza le informazioni di contatto e la qualifica dei fornitori in un unico registro invece di rubriche sparse o rubriche personali.",
+    howItWorks: [
+      "Anagrafica fornitore con contatti commerciali, tecnici, email e PEC",
+      "Integrazione con le credenziali per il download automatico di certificati e schede di sicurezza",
+      "Storico carichi e sostanze fornite da ciascun distributore",
+      "Consultazione immediata dei listini e dei riferimenti operativi",
+    ],
+    benefits: [
+      "Qualifica trasparente e tracciabile dei fornitori del laboratorio",
+      "Credenziali protette dal portachiavi nativo del sistema operativo",
+      "Pieno controllo della catena di fornitura farmaceutica",
+    ],
+    icon: "Truck",
+    relatedSlugs: ["sostanze", "documentazione", "giacenze"],
+  },
+];
