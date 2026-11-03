@@ -53,7 +53,7 @@ export const SITE_CONFIG: SiteConfig = {
   description: "Software gestionale professionale per il laboratorio galenico di farmacia. Desktop nativo, conforme NBP, tariffazione automatica, controllo uniformità capsule, etichette termiche e database su MongoDB locale o cloud Atlas.",
   
   // URL del sito (da aggiornare in fase di deploy con il dominio finale)
-  url: "https://www.gestionalegalenico.it",
+  url: "https://www.labgale.it",
 
   // Call to Action primarie e secondarie configurabili
   primaryCta: {
@@ -65,20 +65,20 @@ export const SITE_CONFIG: SiteConfig = {
     href: "/software",
   },
 
-  // Canali di contatto (Placeholder da completare dal proprietario)
+  // Canali di contatto
   contact: {
-    email: "info@[nomeprodotto].it", // [DA DEFINIRE DAL PROPRIETARIO]
-    pec: "postacertificata@[dominio].it", // [DA DEFINIRE DAL PROPRIETARIO]
-    phone: "+39 [NUMERO DA DEFINIRE]", // [DA DEFINIRE DAL PROPRIETARIO]
+    email: "info@labgale.it",
+    pec: "", // inserire l'indirizzo PEC reale (es. nome@pec.labgale.it) quando è attivo
+    phone: "",
     supportUrl: "/assistenza",
   },
 
-  // Informazioni societarie / legali (Placeholder da completare dal proprietario)
+  // Informazioni del titolare
   company: {
-    legalName: "[RAGIONE SOCIALE DA DEFINIRE]",
-    vatNumber: "[P.IVA DA DEFINIRE]",
-    address: "[INDIRIZZO DA DEFINIRE]",
-    city: "[CITTÀ DA DEFINIRE]",
+    legalName: "Stefano Perna",
+    vatNumber: "",
+    address: "",
+    city: "Rovereto",
     country: "Italia",
   },
 

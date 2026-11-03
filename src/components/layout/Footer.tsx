@@ -64,7 +64,10 @@ export function Footer() {
         {/* Disclaimer & Legal Bottom */}
         <div className="mt-12 pt-8 border-t border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm text-content-muted">
           <p className="text-center md:text-left">
-            © {currentYear} {SITE_CONFIG.productName}. Tutti i diritti riservati. {SITE_CONFIG.company.legalName} — P.IVA {SITE_CONFIG.company.vatNumber}.
+            © {currentYear} {SITE_CONFIG.productName}. Tutti i diritti riservati.
+            {SITE_CONFIG.company.legalName && ` ${SITE_CONFIG.company.legalName}`}
+            {SITE_CONFIG.company.vatNumber && ` — P.IVA ${SITE_CONFIG.company.vatNumber}`}
+            .
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-content-primary transition-colors">
