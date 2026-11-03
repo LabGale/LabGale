@@ -35,36 +35,84 @@ export default function AboutPage() {
             La nostra missione
           </h2>
           <p className="text-body-md text-content-secondary leading-relaxed">
-            Il progetto nasce dall'osservazione diretta del lavoro al banco galenico: adempimenti normativi stringenti, registri da tenere costantemente aggiornati e software commerciali spesso macchinosi, lenti e con canoni sproporzionati.
+            LabGale nasce dall'esigenza di avere uno strumento gestionale
+            moderno, completo e accessibile per il laboratorio galenico
+            della farmacia.
           </p>
           <p className="text-body-md text-content-secondary leading-relaxed">
-            L'obiettivo è fornire a ogni farmacia uno strumento informatico moderno, rapido e a costo zero di licenza, per preservare l'arte galenica e consentire al preparatore di concentrarsi sulla qualità scientifica del medicinale.
+            La gestione delle materie prime, delle procedure di
+            preparazione, della documentazione e degli adempimenti
+            richiede strumenti affidabili, ma spesso le soluzioni
+            disponibili comportano costi e complessità difficili
+            da sostenere per le realtà più piccole.
+          </p>
+          <p className="text-body-md text-content-secondary leading-relaxed">
+            Per questo ho deciso di sviluppare LabGale: un software
+            indipendente, gratuito e in continua evoluzione, pensato
+            per semplificare il lavoro quotidiano del farmacista
+            preparatore e lasciare più spazio a ciò che conta davvero:
+            la qualità della preparazione galenica.
           </p>
         </Card>
 
-        {/* Informazioni Ufficiali sul Titolare / Autore (Placeholder) */}
-        <div className="bg-slate-50 border border-border-strong rounded-xl p-8 space-y-4">
-          <div className="flex items-center gap-2 text-slate-800">
-            <ShieldCheck className="w-5 h-5 text-brand-600" />
-            <h3 className="font-bold text-heading-3">
-              Informazioni sul Titolare e Sviluppatore
-            </h3>
+
+        
+        {/* Informazioni sullo sviluppatore */}
+        <Card padding="lg" className="bg-white border-border-subtle space-y-5">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50">
+              <ShieldCheck className="w-6 h-6 text-brand-600" />
+            </div>
+            <div>
+              <h2 className="font-bold text-heading-2 text-content-primary">
+                Chi sviluppa LabGale
+              </h2>
+              <p className="text-body-sm text-content-muted">
+                Un progetto indipendente
+              </p>
+            </div>
           </div>
-          <div className="space-y-3 text-body-md text-content-secondary leading-relaxed">
+
+          <div className="space-y-4 text-body-md text-content-secondary leading-relaxed">
             <p>
-              <strong>[SEZIONE RISERVATA AL PROPRIETARIO DEL PROGETTO]</strong>
+              LabGale è un progetto ideato, progettato e sviluppato
+              da <strong className="text-content-primary">Stefano Perna</strong>.
             </p>
+
             <p>
-              In questa sezione verranno inserite le informazioni ufficiali relative all'autore, all'eventuale farmacia promotrice o al team di sviluppo del software, non appena confermate in via definitiva:
+              Dalla progettazione dell'architettura software allo sviluppo
+              delle funzionalità, dall'interfaccia grafica alla gestione
+              degli aggiornamenti, ogni aspetto del programma nasce
+              da un lavoro di sviluppo indipendente.
             </p>
-            <ul className="list-disc list-inside space-y-1 pl-2 text-body-sm text-content-muted">
-              <li>Nome e cognome / Ragione Sociale: <em>{SITE_CONFIG.company.legalName}</em></li>
-              <li>Sede: <em>{SITE_CONFIG.company.city} ({SITE_CONFIG.company.country})</em></li>
-              <li>Partita IVA / Codice Fiscale: <em>{SITE_CONFIG.company.vatNumber}</em></li>
-              <li>Contatto diretto: <em>{SITE_CONFIG.contact.email}</em></li>
-            </ul>
+
+            <p>
+              L'obiettivo è realizzare uno strumento concreto e accessibile
+              per le farmacie che svolgono attività galenica, con particolare
+              attenzione alla semplicità di utilizzo, all'affidabilità
+              e alle esigenze operative del laboratorio.
+            </p>
           </div>
-        </div>
+
+          <div className="border-t border-border-subtle pt-4 space-y-2">
+            <p className="text-body-sm font-semibold text-content-primary">
+              Contatti
+            </p>
+            <p className="text-body-sm text-content-secondary">
+              Sviluppatore: Stefano Perna
+            </p>
+            <p className="text-body-sm text-content-secondary">
+              Località: {SITE_CONFIG.company.city}, {SITE_CONFIG.company.country}
+            </p>
+            <a
+              href={`mailto:${SITE_CONFIG.contact.email}`}
+              className="text-body-sm font-medium text-brand-700 hover:text-brand-800 underline"
+            >
+              {SITE_CONFIG.contact.email}
+            </a>
+          </div>
+        </Card>
+
 
         {/* CTA */}
         <div className="text-center pt-4">
