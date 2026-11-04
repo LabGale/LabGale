@@ -48,8 +48,8 @@ export const SITE_CONFIG: SiteConfig = {
   productName: "LabGale",
   shortName: "LabGale",
 
-  tagline: "Il gestionale galenico moderno, completo e senza canoni.",
-  subheadline: "Dalle materie prime alla tariffazione, dai certificati dei fornitori ai controlli di qualità: tutto il tuo laboratorio galenico in un software desktop per Windows, macOS e Linux, con database MongoDB in locale o su Atlas.",
+  tagline: "Il gestionale desktop dedicato al laboratorio galenico.",
+  subheadline: "Uno strumento per organizzare le attività del laboratorio: materie prime, lavorazioni, documenti e strumenti di supporto.",
   description: "LabGale è un software gestionale gratuito e indipendente per il laboratorio galenico di farmacia, ideato e sviluppato da Stefano Perna.",
   // URL del sito (da aggiornare in fase di deploy con il dominio finale)
   url: "https://www.labgale.it",

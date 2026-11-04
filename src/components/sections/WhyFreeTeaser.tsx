@@ -24,8 +24,7 @@ export function WhyFreeTeaser() {
               </h2>
 
               <p className="text-body-lg text-content-secondary leading-relaxed">
-                Spesso un software professionale gratuito fa sorgere un dubbio legittimo: <em>"Dov'è il trucco?"</em>. 
-                Nessun trucco. Crediamo che la sicurezza e l'ordine nel laboratorio galenico debbano essere accessibili a ogni farmacia, senza canoni mensili esorbitanti.
+                {SITE_CONFIG.productName} è un progetto indipendente distribuito gratuitamente. Nella pagina dedicata trovi informazioni sulla licenza e sulle scelte relative al database e alla gestione dell'infrastruttura.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -34,8 +33,8 @@ export function WhyFreeTeaser() {
                     <HardDrive className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-body-md text-content-primary">I tuoi dati restano tuoi</h4>
-                    <p className="text-body-sm text-content-secondary">Funziona in locale sul tuo computer. Nessun dato clinico o di preparazione viene ceduto o monetizzato.</p>
+                    <h4 className="font-bold text-body-md text-content-primary">Distribuzione gratuita</h4>
+                    <p className="text-body-sm text-content-secondary">La pagina dedicata descrive la licenza applicabile e le condizioni del progetto.</p>
                   </div>
                 </div>
 
@@ -44,8 +43,8 @@ export function WhyFreeTeaser() {
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-body-md text-content-primary">Nessun costo nascosto</h4>
-                    <p className="text-body-sm text-content-secondary">Nessun periodo di prova a scadenza, nessuna funzionalità bloccata, nessun abbonamento obbligatorio.</p>
+                    <h4 className="font-bold text-body-md text-content-primary">Infrastruttura configurata dalla farmacia</h4>
+                    <p className="text-body-sm text-content-secondary">Database e servizi esterni scelti dalla farmacia possono avere requisiti e condizioni propri.</p>
                   </div>
                 </div>
               </div>
@@ -54,7 +53,7 @@ export function WhyFreeTeaser() {
             <div className="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
               <Card padding="md" className="bg-white border-brand-200 shadow-sm w-full space-y-4 text-left">
                 <p className="text-body-sm text-content-secondary">
-                  Abbiamo dedicato una pagina intera a spiegare in totale trasparenza i nostri principi e la visione a lungo termine del progetto.
+                  Consulta la pagina dedicata per approfondire licenza, distribuzione e gestione dell'infrastruttura.
                 </p>
                 <Button
                   href="/perche-gratuito"

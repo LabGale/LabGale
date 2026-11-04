@@ -1,3 +1,4 @@
+
 export interface ReleasePlatform {
   os: "windows" | "macos" | "linux";
   osName: string;
@@ -6,9 +7,9 @@ export interface ReleasePlatform {
   architecture: string;
   fileName: string;
   fileSize: string;
-  downloadUrl: string; // URL al file reale o # se in attesa di upload
-  sha256: string;      // Checksum di sicurezza
-  isAvailable: boolean;// true: scaricabile; false: etichettato come "In arrivo"
+  downloadUrl: string;
+  sha256: string;
+  isAvailable: boolean;
   requirements: string[];
 }
 
@@ -22,84 +23,99 @@ export interface SoftwareRelease {
 
 /**
  * CONFIGURAZIONE DELLE RELEASE E DEI DOWNLOAD
- * 
- * Aggiorna questo file quando rilasci una nuova versione del software.
- * I badge, la pagina /scarica e i pulsanti rifletteranno automaticamente questi dati.
+ *
+ * Aggiorna questo file quando rilasci una nuova versione.
+ *
+ * Convenzione nomi:
+ * Gestionale-Laboratorio-{versione}-{sistema}-{architettura}.{estensione}
+ *
+ * Prima di rendere disponibile un installer:
+ * - Inserire il link effettivo al download.
+ * - Inserire il checksum SHA-256 calcolato sul file definitivo.
+ * - Impostare isAvailable a true.
  */
 export const CURRENT_RELEASE: SoftwareRelease = {
   version: "1.0.0",
   releaseDate: "Ottobre 2026",
   isLatest: true,
+
   changelog: [
-    "Rilascio iniziale del software desktop per il laboratorio galenico (interfaccia Flet)",
-    "Architettura database flessibile: MongoDB locale (porta 27017) oppure MongoDB Atlas cloud autonomo",
-    "Anagrafica completa sostanze con purezza/titolo, fattori di correzione, lotti e scadenze",
-    "Fogli di lavorazione magistrali e officinali a norma NBP con calcolo automatico eccipienti e scarico lotti",
-    "Triade documentale (DDT, Certificato di Analisi CoA, SDS) con download automatico dai fornitori (ACEF, Fagron, Galeno, Farmalabor, Farmarete, Esperis)",
-    "Motore di calcolo secondo la Tariffa Nazionale dei Medicinali (DM 22/09/2017) e preventivi per pazienti",
-    "Modulo scientifico di controllo qualità: uniformità di massa capsule (20 unità) secondo Farmacopea Ufficiale con calcolo RSD e verbale PDF",
-    "Stampa etichette galeniche su carta termica (57×31 mm) con validazione bloccante dei requisiti di legge e codici QR",
-    "Banca dati farmaci AIFA con codici ATC, regimi di dispensazione, monitoraggio carenze e download FI/RCP",
-    "Riepilogo e resoconto annuale preparazioni dopanti per la trasmissione al Ministero della Salute (L. 376/2000)",
-    "Protezione sicura delle credenziali nel portachiavi nativo del sistema operativo (Keychain macOS / Credential Manager Windows)",
-    "Runtime di backup automatico programmato e salvataggio preventivo alla chiusura della finestra con ripristino integrato",
+    "Rilascio iniziale del software desktop per il laboratorio galenico, sviluppato con Flet",
+    "Architettura database flessibile: MongoDB locale (porta 27017) oppure MongoDB Atlas o altra istanza remota compatibile",
+    "Anagrafica completa delle sostanze con purezza, titolo, fattori di correzione, lotti e scadenze",
+    "Fogli di lavorazione magistrali e officinali con funzionalità dedicate alla gestione delle preparazioni secondo le Norme di Buona Preparazione",
+    "Gestione della documentazione delle materie prime: DDT, Certificati di Analisi (CoA) e Schede di Sicurezza (SDS)",
+    "Integrazione con i fornitori per il recupero della documentazione disponibile",
+    "Motore di calcolo secondo la Tariffa Nazionale dei Medicinali (D.M. 22/09/2017) e gestione dei preventivi",
+    "Modulo di controllo qualità per l'uniformità di massa delle capsule secondo Farmacopea Ufficiale, con calcolo RSD e generazione del verbale PDF",
+    "Stampa di etichette galeniche su carta termica (57 × 31 mm), con controlli sui requisiti di compilazione e codici QR",
+    "Banca dati dei farmaci AIFA con codici ATC, regimi di dispensazione e informazioni sui medicinali",
+    "Riepilogo delle preparazioni contenenti sostanze dopanti per gli adempimenti previsti dalla L. 376/2000",
+    "Protezione delle credenziali tramite il portachiavi nativo del sistema operativo",
+    "Backup automatici programmabili e funzionalità di ripristino",
   ],
+
   platforms: [
     {
       os: "windows",
       osName: "Windows",
       iconName: "windows",
-      installerType: "Eseguibile Desktop Standalone (.exe)",
+      installerType: "Applicazione Desktop Standalone (.exe)",
       architecture: "64-bit (x64)",
-      fileName: "Gestionale-Laboratorio-1.0.0.exe",
+      fileName: "Gestionale-Laboratorio-1.0.0-Windows-x64.exe",
       fileSize: "~75 MB",
-      downloadUrl: "#download-windows", // [SOSTITUIRE CON LINK REALE IN FASE DI RILASCIO]
-      sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", // [HASH SHA-256 REALE]
-      isAvailable: true,
+      downloadUrl: "#download-windows",
+      sha256: "",
+      isAvailable: false,
       requirements: [
-        "Windows 10 o Windows 11 (64-bit)",
-        "Processore Intel/AMD a 64 bit",
+        "Windows 10 o Windows 11 a 64 bit",
+        "Processore Intel o AMD a 64 bit",
         "Almeno 4 GB di memoria RAM",
         "Circa 300 MB di spazio libero su disco",
-        "Accesso a MongoDB locale (porta 27017) o istanza MongoDB Atlas autonoma",
+        "Accesso a MongoDB locale (porta 27017) oppure a un database MongoDB remoto compatibile",
       ],
     },
+
     {
       os: "macos",
       osName: "macOS",
       iconName: "macos",
-      installerType: "Applicazione Desktop Standalone (.app / .dmg)",
-      architecture: "Universale (Apple Silicon & Intel)",
-      fileName: "Gestionale-Laboratorio-1.0.0.dmg",
+      installerType: "Applicazione Desktop Standalone (.dmg)",
+      architecture: "Apple Silicon (ARM64)",
+      fileName: "Gestionale-Laboratorio-1.0.0-macOS-arm64.dmg",
       fileSize: "~70 MB",
-      downloadUrl: "#download-macos", // [SOSTITUIRE CON LINK REALE IN FASE DI RILASCIO]
-      sha256: "7d1b32a1068800eb4d2719a77918a56b6b7a5e8081691361c4701e4a30e844f2", // [HASH SHA-256 REALE]
-      isAvailable: true,
+      downloadUrl: "#download-macos",
+      sha256: "",
+      isAvailable: false,
       requirements: [
         "macOS 12 (Monterey) o versione successiva",
-        "Compatibile nativamente con Apple Silicon e Mac Intel",
+        "Mac con processore Apple Silicon: M1, M2, M3, M4 e generazioni successive",
+        "Architettura ARM64 nativa; non compatibile con Mac Intel",
         "Almeno 4 GB di memoria RAM",
         "Circa 300 MB di spazio libero su disco",
-        "Accesso a MongoDB locale (porta 27017) o istanza MongoDB Atlas autonoma",
+        "Accesso a MongoDB locale (porta 27017) oppure a un database MongoDB remoto compatibile",
       ],
     },
+
     {
       os: "linux",
       osName: "Linux",
       iconName: "linux",
-      installerType: "Pacchetto Desktop Standalone (AppImage / .deb)",
+      installerType: "Applicazione Desktop Standalone (AppImage)",
       architecture: "64-bit (x86_64)",
-      fileName: "Gestionale-Laboratorio-1.0.0.AppImage",
+      fileName: "Gestionale-Laboratorio-1.0.0-Linux-x86_64.AppImage",
       fileSize: "~65 MB",
-      downloadUrl: "#download-linux", // [SOSTITUIRE CON LINK REALE IN FASE DI RILASCIO]
-      sha256: "4b22ca1b6a3e1b7f248e3cfd713c77d54b8a2e1d7f6b9c8e4a3b2c1d0f9e8a7b", // [HASH SHA-256 REALE]
-      isAvailable: true,
+      downloadUrl: "#download-linux",
+      sha256: "",
+      isAvailable: false,
       requirements: [
-        "Distribuzione Linux a 64-bit (Ubuntu 22.04+, Debian 12+, Fedora 38+ o compatibili)",
-        "Librerie grafiche GTK3 / glibc standard",
+        "Distribuzione Linux a 64 bit",
+        "Ubuntu 22.04+, Debian 12+, Fedora 38+ o distribuzioni compatibili",
+        "Architettura x86_64",
+        "Librerie grafiche e dipendenze di sistema richieste dall'applicazione",
         "Almeno 4 GB di memoria RAM",
         "Circa 300 MB di spazio libero su disco",
-        "Accesso a MongoDB locale (porta 27017) o istanza MongoDB Atlas autonoma",
+        "Accesso a MongoDB locale (porta 27017) oppure a un database MongoDB remoto compatibile",
       ],
     },
   ],

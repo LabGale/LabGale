@@ -1,14 +1,12 @@
 import React from "react";
+import Link from "next/link";
 import { SITE_CONFIG } from "@/config/site.config";
-import { CURRENT_RELEASE } from "@/data/releases.data";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { AppMockup } from "@/components/sections/AppMockup";
 import { Download, ChevronRight, ShieldCheck, HardDrive, Monitor } from "@/components/ui/Icons";
 
 export function HeroSection() {
-  const availablePlatforms = CURRENT_RELEASE.platforms.filter((p) => p.isAvailable);
-
   return (
     <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-white via-brand-50/20 to-surface-page">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +17,7 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2">
             <Badge variant="brand" size="md" icon={<ShieldCheck className="w-4 h-4 text-brand-600" />}>
-              Software Professionale • Nessun Costo di Licenza
+              Gestionale galenico • Distribuito gratuitamente
             </Badge>
           </div>
 
@@ -42,7 +40,7 @@ export function HeroSection() {
               className="w-full sm:w-auto shadow-md"
               leftIcon={<Download className="w-5 h-5" />}
             >
-              {SITE_CONFIG.primaryCta.label}
+              Verifica le release
             </Button>
             <Button
               href={SITE_CONFIG.secondaryCta.href}
@@ -59,15 +57,12 @@ export function HeroSection() {
           <div className="pt-1 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-body-sm text-content-muted">
             <span className="flex items-center gap-1.5">
               <HardDrive className="w-4 h-4 text-brand-600" />
-              Funzionamento locale (i dati restano sul tuo PC)
+              Database locale o remoto, secondo configurazione
             </span>
-            <span className="flex items-center gap-1.5">
+            <Link href="/scarica" className="flex items-center gap-1.5 hover:text-content-primary">
               <Monitor className="w-4 h-4 text-brand-600" />
-              Disponibile per{" "}
-              <strong className="text-content-primary font-semibold">
-                {availablePlatforms.map((p) => p.osName).join(" · ")}
-              </strong>
-            </span>
+              Verifica disponibilità e requisiti
+            </Link>
           </div>
         </div>
 

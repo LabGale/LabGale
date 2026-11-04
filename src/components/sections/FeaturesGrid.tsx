@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FEATURES } from "@/data/features.data";
+import { FEATURE_HIGHLIGHTS } from "@/data/features.data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { DynamicIcon, ChevronRight } from "@/components/ui/Icons";
@@ -11,15 +11,15 @@ export function FeaturesGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <SectionHeading
-          badge="Funzionalità Complete"
-          title="Tutto ciò che serve al laboratorio galenico"
-          subtitle="Progettato a partire dalle esigenze reali del farmacista preparatore, nel rispetto rigoroso delle Norme di Buona Preparazione."
+          badge="Funzionalità"
+          title="Strumenti per il laboratorio galenico"
+          subtitle="Dalla gestione delle materie prime ai fogli di lavorazione, il gestionale raccoglie funzioni per organizzare le attività del laboratorio."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {FEATURES.map((feature) => (
+          {FEATURE_HIGHLIGHTS.map((area) => (
             <Card
-              key={feature.slug}
+              key={area.title}
               as="article"
               hoverable
               padding="md"
@@ -27,22 +27,23 @@ export function FeaturesGrid() {
             >
               <div className="space-y-3">
                 <div className="w-10 h-10 rounded-md bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center transition-colors group-hover:bg-brand-600 group-hover:text-white">
-                  <DynamicIcon name={feature.icon} className="w-5 h-5" />
+                  <DynamicIcon name={area.icon} className="w-5 h-5" />
                 </div>
                 <h3 className="font-bold text-heading-3 text-content-primary group-hover:text-brand-700 transition-colors">
-                  {feature.title}
+                  {area.title}
                 </h3>
                 <p className="text-body-sm text-content-secondary leading-relaxed">
-                  {feature.shortDescription}
+                  {area.description}
                 </p>
               </div>
 
               <div className="pt-4 mt-4 border-t border-border-subtle">
                 <Link
-                  href={`/funzionalita/${feature.slug}`}
+                  href="/funzionalita"
+                  aria-label={`Esplora tutte le funzionalità: ${area.categories.join(", ")}`}
                   className="inline-flex items-center text-body-sm font-semibold text-brand-700 hover:text-brand-800 group-hover:translate-x-0.5 transition-transform"
                 >
-                  <span>Approfondisci</span>
+                  <span>Tutte le funzionalità</span>
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>

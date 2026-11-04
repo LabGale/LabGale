@@ -2,13 +2,12 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FEATURES, FeatureDetail } from "@/data/features.data";
+import { FEATURES } from "@/data/features.data";
 import { SITE_CONFIG } from "@/config/site.config";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { DynamicIcon, Check, ChevronRight, Download, ArrowRight, FolderArchive, ShieldAlert } from "@/components/ui/Icons";
+import { DynamicIcon, Check, ChevronRight, Download } from "@/components/ui/Icons";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 
 export function generateStaticParams() {
@@ -65,7 +64,7 @@ export default function FeatureDetailPage({ params }: { params: { slug: string }
           <div className="lg:col-span-8 space-y-5">
             <div className="inline-flex items-center gap-2 text-brand-700 font-semibold text-body-sm bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
               <DynamicIcon name={feature.icon} className="w-4 h-4" />
-              <span>Modulo Ufficiale del Software</span>
+              <span>{feature.category}</span>
             </div>
 
             <h1 className="text-display md:text-[40px] font-extrabold text-content-primary tracking-tight leading-tight">
@@ -110,27 +109,19 @@ export default function FeatureDetailPage({ params }: { params: { slug: string }
                   <Check className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
                   <span>Nessun limite di record o preparazioni</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
-                  <span>Dati salvati in locale sul tuo computer</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
-                  <span>Conforme alle Norme di Buona Preparazione (NBP)</span>
-                </li>
               </ul>
             </Card>
           </div>
         </div>
 
-        {/* Problema Risolto & Come Funziona */}
+        {/* Ambito e capacità */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
           <Card padding="lg" className="border-border-subtle bg-white space-y-4">
             <div className="inline-block p-2 rounded-md bg-amber-50 text-amber-800 border border-amber-200">
-              <span className="font-semibold text-body-sm">Il problema risolto</span>
+              <span className="font-semibold text-body-sm">In pratica</span>
             </div>
             <h2 className="font-bold text-heading-2 text-content-primary">
-              Cosa cambia rispetto ai metodi tradizionali
+              Ambito della funzione
             </h2>
             <p className="text-body-md text-content-secondary leading-relaxed">
               {feature.problemSolved}
@@ -139,39 +130,20 @@ export default function FeatureDetailPage({ params }: { params: { slug: string }
 
           <Card padding="lg" className="border-border-subtle bg-white space-y-4">
             <div className="inline-block p-2 rounded-md bg-brand-50 text-brand-800 border border-brand-200">
-              <span className="font-semibold text-body-sm">Come funziona</span>
+              <span className="font-semibold text-body-sm">Capacità comprese</span>
             </div>
             <h2 className="font-bold text-heading-2 text-content-primary">
-              Il flusso operativo all'interno dell'applicazione
+              Funzioni disponibili
             </h2>
             <ul className="space-y-2.5 text-body-sm text-content-secondary">
               {feature.howItWorks.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
+                  <Check className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
                   <span>{step}</span>
                 </li>
               ))}
             </ul>
           </Card>
-        </div>
-
-        {/* Vantaggi Operativi */}
-        <div className="bg-white border border-border-subtle rounded-xl p-8 md:p-10 shadow-sm space-y-6">
-          <h2 className="font-bold text-heading-2 text-content-primary">
-            I vantaggi pratici per il farmacista
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {feature.benefits.map((benefit, idx) => (
-              <div key={idx} className="p-4 rounded-lg bg-slate-50 border border-border-subtle flex items-start gap-3">
-                <Check className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
-                <p className="text-body-md text-content-primary font-medium leading-snug">
-                  {benefit}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Moduli Correlati */}

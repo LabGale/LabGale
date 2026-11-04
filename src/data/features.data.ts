@@ -1,3 +1,15 @@
+export const FEATURE_CATEGORIES = [
+  "Materie prime e cataloghi",
+  "Registrazione e tracciabilità",
+  "Procedure e fogli di lavorazione",
+  "Tariffazione e preventivi",
+  "Documentazione ed etichette",
+  "Controlli e strumenti di supporto",
+  "Gestione e sicurezza",
+] as const;
+
+export type FeatureCategory = (typeof FEATURE_CATEGORIES)[number];
+
 export interface FeatureDetail {
   slug: string;
   title: string;
@@ -11,236 +23,469 @@ export interface FeatureDetail {
   relatedSlugs: string[];
 }
 
-export const FEATURES: FeatureDetail[] = [
+export interface CategorizedFeatureDetail extends FeatureDetail {
+  category: FeatureCategory;
+}
+
+export const FEATURES: CategorizedFeatureDetail[] = [
   {
     slug: "sostanze",
-    title: "Sostanze e Materie Prime",
-    shortTitle: "Materie Prime",
-    shortDescription: "Anagrafica completa delle sostanze con fattori di correzione, lotti, scadenze e giacenze.",
-    fullDescription: "Gestisci l'anagrafica di tutte le materie prime presenti in laboratorio. Registra caratteristiche chimiche, titolo o purezza, fattore di correzione, forma farmaceutica, fornitore di provenienza, lotti acquistati e date di scadenza con la massima precisione.",
-    problemSolved: "Elimina la frammentazione delle informazioni su fogli cartacei o tabelle disordinate, riducendo il rischio di utilizzare materie prime con dati di purezza non corretti o lotti non conformi.",
+    category: "Materie prime e cataloghi",
+    title: "Materie prime e cataloghi",
+    shortTitle: "Materie prime",
+    shortDescription:
+      "Consulta le voci disponibili nel catalogo condiviso e gestisci anagrafiche personali di materie prime, formati e identificativi.",
+    fullDescription:
+      "La funzione riunisce la ricerca nel catalogo comune e la gestione delle anagrafiche personali. Le voci già utilizzate possono essere disattivate anziché eliminate.",
+    problemSolved:
+      "Riunisce la ricerca delle materie prime e la gestione dei dati specifici della farmacia.",
     howItWorks: [
-      "Inserimento o ricerca immediata per denominazione chimica o commerciale",
-      "Configurazione di purezza, titolo, fattore di correzione e unità di misura",
-      "Associazione diretta dei lotti con data di carico, lotto produttore e scadenza",
-      "Collegamento immediato a schede tecniche e documenti (DDT, CoA, SDS)",
+      "Ricerca e consultazione dei dati disponibili nel catalogo condiviso.",
+      "Creazione e modifica delle anagrafiche personali, con formati e identificativi.",
+      "Disattivazione delle voci personali già utilizzate.",
     ],
-    benefits: [
-      "Dati sempre aggiornati e consultabili in pochi istanti",
-      "Calcolo automatico del fattore di correzione nei fogli di lavorazione",
-      "Tracciabilità puntuale di ogni lotto impiegato",
-    ],
+    benefits: [],
     icon: "FlaskConical",
-    relatedSlugs: ["schede-tecniche", "documentazione", "giacenze"],
+    relatedSlugs: ["fornitori", "registrazione-acquisti", "schede-tecniche"],
   },
   {
-    slug: "schede-tecniche",
-    title: "Schede Tecniche Sostanze e Formule",
-    shortTitle: "Schede Tecniche",
-    shortDescription: "Consultazione di parametri chimico-fisici, posologie, incompatibilità e formule magistrali/officinali.",
-    fullDescription: "Ogni sostanza e formula ha la sua scheda tecnica strutturata. Visualizza proprietà chimico-fisiche, intervalli di pH, solubilità, precauzioni di manipolazione, incompatibilità note e istruzioni per l'allestimento di preparazioni magistrali e officinali.",
-    problemSolved: "Evita di dover sfogliare voluminosi testi cartacei o ricercare PDF dispersi prima di iniziare una nuova formulazione in laboratorio.",
+    slug: "fornitori",
+    category: "Materie prime e cataloghi",
+    title: "Fornitori",
+    shortTitle: "Fornitori",
+    shortDescription:
+      "Gestisci i dati anagrafici dei fornitori e consulta le registrazioni associate.",
+    fullDescription:
+      "La scheda fornitore raccoglie i riferimenti utili alla gestione degli acquisti di materie prime.",
+    problemSolved:
+      "Raccoglie in un unico punto i dati dei fornitori utilizzati dalla farmacia.",
     howItWorks: [
-      "Schede tecniche complete sia per materie prime che per formulazioni magistrali/officinali",
-      "Note operative per la conservazione corretta (luce, temperatura, umidità)",
-      "Avvertenze di incompatibilità con altri principi attivi ed eccipienti",
-      "Generazione ed esportazione in formato PDF pronto per la consultazione o archiviazione",
+      "Gestione dell'anagrafica e dei riferimenti del fornitore.",
+      "Consultazione delle registrazioni associate.",
     ],
-    benefits: [
-      "Maggiore sicurezza operativa durante l'allestimento",
-      "Consultazione contestuale senza interrompere il flusso di lavoro",
-      "Standardizzazione delle procedure operative di laboratorio",
-    ],
-    icon: "FileSpreadsheet",
-    relatedSlugs: ["sostanze", "fogli-lavorazione", "documentazione"],
+    benefits: [],
+    icon: "Truck",
+    relatedSlugs: ["sostanze", "registrazione-acquisti", "documentazione"],
   },
   {
-    slug: "fogli-lavorazione",
-    title: "Fogli di Lavorazione Magistrali e Officinali",
-    shortTitle: "Fogli di Lavorazione",
-    shortDescription: "Compilazione guidata a norma NBP con calcolo automatico tara/netto, eccipienti e scarico lotti.",
-    fullDescription: "Il cuore operativo del laboratorio galenico: redigi fogli di lavorazione sia magistrali (su ricetta medica) che officinali (su formulari ufficiali). Il software gestisce il calcolo automatico dei dosaggi, il fattore di correzione, la tara dei contenitori, lo scarico dai lotti in giacenza e l'archiviazione cronologica.",
-    problemSolved: "Azzera gli errori matematici di calcolo manuale su carta, previene la dimenticanza di dati obbligatori per legge ed elimina faldoni cartacei ingombranti.",
+    slug: "registrazione-acquisti",
+    category: "Registrazione e tracciabilità",
+    title: "Registrazione degli acquisti",
+    shortTitle: "Registrazione acquisti",
+    shortDescription:
+      "Registra materia prima, fornitore, lotto, scadenza, quantità, prezzo e riferimenti d'acquisto.",
+    fullDescription:
+      "Il flusso assegna il numero interno previsto e gestisce i documenti associati attraverso passaggi distinti. Verifica lo stato della registrazione e completa i passaggi richiesti: le operazioni non costituiscono un'unica transazione atomica.",
+    problemSolved:
+      "Raccoglie i principali dati dell'acquisto nella registrazione della materia prima.",
     howItWorks: [
-      "Selezione della forma farmaceutica (capsule, creme, sciroppi, soluzioni, polveri, tisane, ecc.)",
-      "Composizione della formula con prelievo automatico dai lotti attivi a magazzino",
-      "Calcolo automatico di eccipienti, volume o massa teorica e fattori di correzione",
-      "Registrazione controlli, firma dell'operatore ed esportazione del foglio PDF conforme a NBP",
+      "Inserimento dei dati della materia prima e dell'acquisto.",
+      "Associazione di fornitore, lotto, scadenza, quantità e prezzo.",
+      "Assegnazione del numero interno e gestione dei documenti nei passaggi previsti.",
+      "Verifica dell'esito delle singole fasi della registrazione.",
     ],
-    benefits: [
-      "Velocità e precisione nella redazione di formule magistrali e officinali",
-      "Scarico automatico e tracciabile dei lotti dal magazzino",
-      "Conformità garantita alle Norme di Buona Preparazione della Farmacopea Ufficiale",
+    benefits: [],
+    icon: "FlaskConical",
+    relatedSlugs: [
+      "importazione-ddt",
+      "registro-sostanze",
+      "giacenze",
+      "documentazione",
     ],
-    icon: "ClipboardCheck",
-    relatedSlugs: ["sostanze", "controllo-capsule", "preventivi", "etichette"],
   },
   {
-    slug: "documentazione",
-    title: "Triade Documentale: DDT, Certificati e SDS",
-    shortTitle: "Documenti Sostanze",
-    shortDescription: "Gestione integrata di DDT, CoA e SDS con download automatico dai portali dei fornitori.",
-    fullDescription: "Gestione centralizzata dei tre documenti essenziali per ogni materia prima: Documenti di Trasporto (DDT), Certificati di Analisi (CoA) e Schede di Sicurezza (SDS). Include lo scaricamento automatico dai portali ufficiali dei principali distributori o il caricamento manuale, rispettando il vincolo di conservazione NBP (6 mesi dopo la chiusura del lotto).",
-    problemSolved: "Elimina la ricerca manuale e il download dispersivo dei certificati sui portali dei singoli fornitori, rendendo ogni documento reperibile in un clic durante un'ispezione.",
+    slug: "importazione-ddt",
+    category: "Registrazione e tracciabilità",
+    title: "Importazione assistita dei DDT",
+    shortTitle: "Importazione DDT",
+    shortDescription:
+      "Carica PDF supportati, rivedi i dati riconosciuti e abbina le righe alle voci presenti prima della registrazione.",
+    fullDescription:
+      "L'importazione precompila le informazioni riconosciute nei documenti supportati e assiste l'abbinamento delle righe. Le registrazioni in blocco avvengono dopo la verifica e la conferma dell'operatore.",
+    problemSolved:
+      "Supporta la trascrizione dei dati da un DDT senza sostituire la revisione dell'operatore.",
     howItWorks: [
-      "Download e aggiornamento automatico dei certificati di analisi dai portali dei fornitori (ACEF, Fagron, Galeno, Farmalabor, Farmarete, Esperis)",
-      "Gestione a 3 slot per ogni registrazione: DDT, Certificato di Analisi e SDS",
-      "Filtri intelligenti per individuare rapidamente registrazioni con documenti mancanti",
-      "Regola di conservazione a norma: eliminazione permessa solo dopo 6 mesi dalla chiusura dell'ultimo pezzo",
+      "Caricamento di un PDF supportato.",
+      "Revisione dei dati e delle righe riconosciute.",
+      "Abbinamento con le voci di catalogo e conferma prima della registrazione.",
     ],
-    benefits: [
-      "Risparmio di decine di ore nel reperimento dei certificati d'analisi",
-      "Laboratorio sempre pronto e inappuntabile in caso di ispezione sanitaria",
-      "Documenti associati direttamente a ciascun lotto e fornitore",
-    ],
+    benefits: [],
     icon: "FolderArchive",
-    relatedSlugs: ["sostanze", "fornitori", "fogli-lavorazione"],
-  },
-  {
-    slug: "controllo-capsule",
-    title: "Controllo Qualità Uniformità di Massa Capsule",
-    shortTitle: "Uniformità Capsule",
-    shortDescription: "Test gravimetrico su 20 capsule secondo criteri Farmacopea Ufficiale con calcolo RSD e limiti FU.",
-    fullDescription: "Modulo scientifico dedicato al controllo di qualità obbligatorio per le capsule rigide secondo le Norme di Buona Preparazione e la Farmacopea Ufficiale. Inserisci i pesi di 20 capsule e ottieni istantaneamente l'analisi statistica completa: peso medio, deviazione standard, deviazione standard relativa (RSD), limiti di tolleranza ±5% e ±10%, test Average Weight e verbale PDF di conformità.",
-    problemSolved: "Sostituisce calcoli manuali complessi e fogli di calcolo esterni non certificati, fornendo una valutazione immediata di conformità della preparazione galenica.",
-    howItWorks: [
-      "Inserimento rapido dei pesi sperimentali delle 20 capsule campionate",
-      "Calcolo matematico immediato di media, deviazione standard e RSD",
-      "Verifica automatica del rispetto delle soglie di tolleranza della Farmacopea (±5% e ±10%)",
-      "Generazione immediata del verbale di controllo qualità in formato PDF allegabile al foglio di lavorazione",
-    ],
-    benefits: [
-      "Totale conformità ai controlli di qualità richiesti dalla Farmacopea Ufficiale",
-      "Verifica in tempo reale dell'omogeneità di riempimento prima della dispensazione",
-      "Verbale di collaudo analitico stampabile e archiviabile digitalmente",
-    ],
-    icon: "Scale",
-    relatedSlugs: ["fogli-lavorazione", "preventivi", "etichette"],
-  },
-  {
-    slug: "preventivi",
-    title: "Tariffazione Nazionale e Preventivi",
-    shortTitle: "Tariffazione e Prezzi",
-    shortDescription: "Calcolo automatico secondo la Tariffa Nazionale dei Medicinali (DM 22/09/2017) e preventivi per i pazienti.",
-    fullDescription: "Calcola il prezzo corretto di ogni preparazione in modo automatico e conforme alla Tariffa Nazionale dei Medicinali. Il motore applica l'onorario professionale per forma farmaceutica, le operazioni tecnologiche eseguite, i supplementi per sostanze velenose, stupefacenti o dopanti, i costi dei recipienti, i diritti addizionali e l'IVA, generando sia la tariffazione ufficiale sia il preventivo trasparente per il paziente.",
-    problemSolved: "Evita sanzioni per tariffazioni errate e calcoli manuali laboriosi delle tabelle tariffarie, offrendo al cliente un preventivo immediato e professionale.",
-    howItWorks: [
-      "Abbinamento automatico della forma farmaceutica alle categorie della Tariffa Nazionale",
-      "Selezione delle operazioni tecnologiche consigliate o personalizzate",
-      "Applicazione automatica di supplementi (sostanze velenose, stupefacenti, dopanti, lavoro notturno/festivo)",
-      "Emissione del foglio di tariffazione ufficiale e del preventivo chiaro per il paziente in PDF",
-    ],
-    benefits: [
-      "Tariffazione legalmente ineccepibile e trasparente",
-      "Calcolo istantaneo del preventivo direttamente al banco farmacia",
-      "Passaggio diretto dal preventivo accettato al foglio di lavorazione",
-    ],
-    icon: "Calculator",
-    relatedSlugs: ["fogli-lavorazione", "sostanze", "controllo-capsule"],
-  },
-  {
-    slug: "etichette",
-    title: "Stampa Etichette Galeniche Termiche",
-    shortTitle: "Etichette Termiche",
-    shortDescription: "Stampa su carta termica 57×31 mm con verifica bloccante dei dati obbligatori NBP e codici QR.",
-    fullDescription: "Stampa le etichette galeniche direttamente su stampanti termiche (formato standard 57×31 mm o personalizzato). Il sistema include una validazione preventiva e bloccante: rileva all'istante se mancano dati obbligatori per legge (avvertenze, data, posologia, conservazione, farmacista preparatore, prezzo) e permette di scegliere tra 4 layout grafici con stampa di codici QR.",
-    problemSolved: "Elimina il rischio di etichette non a norma di legge e l'uso di fogli A4 da ritagliare, offrendo etichette termiche professionali e resistenti.",
-    howItWorks: [
-      "Selezione della preparazione dal registro dei fogli di lavorazione",
-      "Controllo automatico di conformità normativa dei dati inseriti con avviso visivo",
-      "Scelta del template (Automatico, Standard, Compatto, Ridotto) con o senza codice QR",
-      "Anteprima a video e invio rapido alla stampante termica per stampa singola o in batch",
-    ],
-    benefits: [
-      "Zero rischio di sanzioni per etichette prive dei requisiti di legge",
-      "Formato standard per rotoli termici 57×31 mm ideale per boccette e flaconi",
-      "Stampa immediata senza spreco di carta o inchiostro",
-    ],
-    icon: "Tag",
-    relatedSlugs: ["fogli-lavorazione", "preventivi", "controllo-capsule"],
-  },
-  {
-    slug: "giacenze",
-    title: "Giacenze, Magazzino e Scadenze",
-    shortTitle: "Giacenze e Lotti",
-    shortDescription: "Controllo in tempo reale di scorte, multi-lotto, soglie minime di riordino e scadenze imminenti.",
-    fullDescription: "Pieno controllo del magazzino del laboratorio galenico. Ogni carico viene registrato con lotto, fornitore e data di scadenza; ogni preparazione allestita preleva e scarica automaticamente la quantità corretta. Avvisi visivi segnalano le scorte sotto la soglia minima e le materie prime prossime alla scadenza.",
-    problemSolved: "Elimina le brutte sorprese di sostanze esaurite all'arrivo di una ricetta urgente o materie prime scadute dimenticate sugli scaffali del laboratorio.",
-    howItWorks: [
-      "Registrazione rapida del carico con gestione di lotti multipli per la stessa sostanza",
-      "Scarico automatico dal lotto durante l'allestimento del foglio di lavorazione",
-      "Avvisi visivi per le sostanze sotto il livello di scorta minima configurato",
-      "Monitoraggio scadenze a 30/60 giorni per evitare sprechi e utilizzi non conformi",
-    ],
-    benefits: [
-      "Magazzino sempre sincronizzato con la reale attività di laboratorio",
-      "Drastica riduzione dello spreco di materie prime scadute",
-      "Tracciabilità inequivocabile richiesta in fase ispettiva",
-    ],
-    icon: "Boxes",
-    relatedSlugs: ["sostanze", "fogli-lavorazione", "fornitori"],
+    relatedSlugs: ["registrazione-acquisti", "sostanze", "fornitori"],
   },
   {
     slug: "registro-sostanze",
-    title: "Registro Sostanze e Resoconto Dopanti",
-    shortTitle: "Registro e Dopanti",
-    shortDescription: "Registro cronologico di carico/scarico e riepilogo annuale dopanti per la trasmissione al Ministero.",
-    fullDescription: "Gestione del registro cronologico delle sostanze del laboratorio e automazione per il resoconto annuale obbligatorio delle preparazioni contenenti principi attivi soggetti a disciplina antidoping (Legge 376/2000). Genera il prospetto riepilogativo per la trasmissione annuale al Ministero della Salute.",
-    problemSolved: "Semplifica adempimenti normativi rigorosi che, se gestiti manualmente a fine anno, richiedono giorni di lavoro e presentano alto rischio di sviste formali.",
+    category: "Registrazione e tracciabilità",
+    title: "Registro e movimenti",
+    shortTitle: "Registro e movimenti",
+    shortDescription:
+      "Consulta le registrazioni e gestisci i passaggi applicativi legati ai pezzi, dagli utilizzi alle uscite.",
+    fullDescription:
+      "Il registro raccoglie le operazioni inserite nel gestionale e i relativi movimenti. I dati registrati non attestano operazioni fisiche che non siano state inserite.",
+    problemSolved:
+      "Permette di consultare le registrazioni e i movimenti associati alle materie prime.",
     howItWorks: [
-      "Tracciamento puntuale delle movimentazioni di carico e scarico di ogni materia prima",
-      "Identificazione automatica delle sostanze appartenenti alle classi dopanti",
-      "Generazione del prospetto riepilogativo per la trasmissione annuale al Ministero della Salute",
-      "Esportazione pulita e ordinata dei dati necessari per la relazione di fine anno",
+      "Consultazione delle registrazioni e dei movimenti collegati.",
+      "Gestione applicativa di aperture, utilizzi, residui e uscite.",
+      "Rettifiche con motivazione.",
     ],
-    benefits: [
-      "Massima serenità e certezza del dato in caso di controlli ispettivi",
-      "Risparmio di ore di lavoro durante la chiusura del resoconto annuale",
-      "Archivio storico delle movimentazioni sempre consultabile e stampabile",
+    benefits: [],
+    icon: "ClipboardCheck",
+    relatedSlugs: ["registrazione-acquisti", "giacenze", "fogli-lavorazione"],
+  },
+  {
+    slug: "giacenze",
+    category: "Registrazione e tracciabilità",
+    title: "Giacenze e rettifiche",
+    shortTitle: "Giacenze",
+    shortDescription:
+      "Consulta residui e movimenti registrati, inserisci rettifiche motivate ed esporta i dati in CSV.",
+    fullDescription:
+      "La schermata delle giacenze mostra le quantità e i movimenti registrati nel gestionale. La consultazione non sostituisce la verifica delle scorte fisiche.",
+    problemSolved:
+      "Rende consultabili le giacenze applicative e i movimenti che le compongono.",
+    howItWorks: [
+      "Consultazione di giacenze e residui.",
+      "Esame del dettaglio dei movimenti registrati.",
+      "Rettifica manuale con motivazione ed esportazione CSV.",
     ],
-    icon: "ShieldAlert",
-    relatedSlugs: ["sostanze", "fogli-lavorazione", "documentazione"],
+    benefits: [],
+    icon: "Boxes",
+    relatedSlugs: ["registro-sostanze", "registrazione-acquisti", "fornitori"],
+  },
+  {
+    slug: "schede-tecniche",
+    category: "Procedure e fogli di lavorazione",
+    title: "Procedure e schede tecniche",
+    shortTitle: "Procedure e schede",
+    shortDescription:
+      "Crea, modifica e consulta schede con dati di preparazione, componenti e istruzioni inseriti dall'utente.",
+    fullDescription:
+      "Le schede raccolgono le informazioni e le istruzioni inserite dall'utente per materie prime e preparazioni. È possibile produrre un PDF per la consultazione.",
+    problemSolved:
+      "Raccoglie le informazioni di preparazione e le relative istruzioni in schede consultabili.",
+    howItWorks: [
+      "Creazione, modifica e consultazione delle schede.",
+      "Inserimento di componenti e istruzioni operative.",
+      "Generazione di un PDF della scheda.",
+    ],
+    benefits: [],
+    icon: "FileSpreadsheet",
+    relatedSlugs: ["sostanze", "fogli-lavorazione"],
+  },
+  {
+    slug: "fogli-lavorazione",
+    category: "Procedure e fogli di lavorazione",
+    title: "Fogli di lavorazione",
+    shortTitle: "Fogli di lavorazione",
+    shortDescription:
+      "Compila e salva fogli magistrali e officinali collegati a procedure e componenti.",
+    fullDescription:
+      "Il gestionale mette a disposizione controlli formali e registra i movimenti applicativi collegati al foglio. La compilazione non sostituisce le verifiche professionali sulla formula e sulla preparazione.",
+    problemSolved:
+      "Organizza i dati del foglio di lavorazione e le informazioni collegate alla preparazione.",
+    howItWorks: [
+      "Compilazione e salvataggio di fogli magistrali e officinali.",
+      "Collegamento a procedure e componenti.",
+      "Controlli formali e registrazione applicativa dei movimenti collegati.",
+      "Generazione del documento a partire dai dati inseriti.",
+    ],
+    benefits: [],
+    icon: "ClipboardCheck",
+    relatedSlugs: [
+      "schede-tecniche",
+      "registro-sostanze",
+      "preventivi",
+      "etichette",
+      "controllo-capsule",
+    ],
+  },
+  {
+    slug: "preventivi",
+    category: "Tariffazione e preventivi",
+    title: "Tariffazione e preventivi",
+    shortTitle: "Tariffazione e preventivi",
+    shortDescription:
+      "Calcola prezzi e totali e gestisci preventivi con più preparazioni sulla base dei dati e delle opzioni configurate.",
+    fullDescription:
+      "Il calcolo utilizza prezzi, tabelle e scelte configurate o inserite dall'operatore; non garantisce che i valori coincidano con quelli vigenti. I preventivi possono essere salvati, riaperti e generati in PDF.",
+    problemSolved:
+      "Raccoglie i dati di prezzo e le scelte effettuate per preparare un calcolo o un preventivo.",
+    howItWorks: [
+      "Inserimento o selezione dei prezzi e delle opzioni di calcolo.",
+      "Calcolo dei totali sulla base dei dati disponibili.",
+      "Gestione di preventivi multipreparazione con destinatario e note.",
+      "Salvataggio, riapertura e generazione del PDF.",
+    ],
+    benefits: [],
+    icon: "Calculator",
+    relatedSlugs: ["fogli-lavorazione", "storico-prezzi"],
+  },
+  {
+    slug: "storico-prezzi",
+    category: "Tariffazione e preventivi",
+    title: "Storico dei prezzi d'acquisto",
+    shortTitle: "Storico prezzi",
+    shortDescription:
+      "Cerca e confronta i prezzi presenti nelle registrazioni d'acquisto salvate.",
+    fullDescription:
+      "Lo storico si basa sugli acquisti registrati e permette di consultare i confronti disponibili. Non è un listino esterno o in tempo reale.",
+    problemSolved:
+      "Aiuta a consultare i prezzi d'acquisto già presenti nel registro.",
+    howItWorks: [
+      "Ricerca per materia prima, numero interno, ditta o fornitore.",
+      "Consultazione e confronto dei prezzi registrati.",
+      "Visualizzazione dei dati disponibili nello storico.",
+    ],
+    benefits: [],
+    icon: "Calculator",
+    relatedSlugs: ["registrazione-acquisti", "fornitori", "preventivi"],
+  },
+  {
+    slug: "documentazione",
+    category: "Documentazione ed etichette",
+    title: "Documenti delle materie prime",
+    shortTitle: "Documenti",
+    shortDescription:
+      "Gestisci DDT, certificati di analisi e SDS associati alle registrazioni, con caricamento e consultazione dei documenti.",
+    fullDescription:
+      "Puoi caricare, aprire, scaricare e gestire DDT, certificati di analisi e SDS. Il download è disponibile per i provider supportati e dipende dall'accesso e dalla disponibilità del servizio.",
+    problemSolved:
+      "Raccoglie i documenti associati alle registrazioni delle materie prime.",
+    howItWorks: [
+      "Caricamento e apertura dei documenti disponibili.",
+      "Download dai provider supportati, quando il servizio è disponibile.",
+      "Filtri per individuare registrazioni con documenti mancanti.",
+      "Gestione dei documenti secondo le operazioni disponibili per ciascun tipo.",
+    ],
+    benefits: [],
+    icon: "FolderArchive",
+    relatedSlugs: ["registrazione-acquisti", "fornitori", "sostanze"],
+  },
+  {
+    slug: "etichette",
+    category: "Documentazione ed etichette",
+    title: "Etichette in PDF",
+    shortTitle: "Etichette",
+    shortDescription:
+      "Crea un'anteprima, scegli un modello, modifica le descrizioni e genera etichette singole o in batch dai fogli.",
+    fullDescription:
+      "La funzione compone etichette in PDF a partire dai fogli di lavorazione. La stampa fisica dipende dalla stampante e dalla configurazione utilizzata.",
+    problemSolved:
+      "Supporta la preparazione di etichette a partire dai dati presenti nei fogli.",
+    howItWorks: [
+      "Selezione del foglio e del modello di etichetta.",
+      "Anteprima e modifica delle descrizioni.",
+      "Generazione del PDF singolo o in batch.",
+    ],
+    benefits: [],
+    icon: "Tag",
+    relatedSlugs: ["fogli-lavorazione", "documentazione"],
+  },
+  {
+    slug: "controllo-capsule",
+    category: "Controlli e strumenti di supporto",
+    title: "Controllo capsule",
+    shortTitle: "Controllo capsule",
+    shortDescription:
+      "Inserisci i pesi rilevati e consulta gli indicatori calcolati dal gestionale, con possibilità di salvataggio e PDF.",
+    fullDescription:
+      "Il calcolo elabora i valori inseriti dall'operatore e può essere salvato e riportato in un PDF. Il risultato non certifica il metodo o il controllo effettuato.",
+    problemSolved:
+      "Fornisce un supporto di calcolo per i dati inseriti durante il controllo delle capsule.",
+    howItWorks: [
+      "Inserimento dei pesi dei campioni.",
+      "Calcolo degli indicatori implementati, tra cui media, deviazione standard e RSD.",
+      "Salvataggio del controllo e generazione del PDF.",
+    ],
+    benefits: [],
+    icon: "Scale",
+    relatedSlugs: ["fogli-lavorazione", "calcoli-conversioni"],
+  },
+  {
+    slug: "calcoli-conversioni",
+    category: "Controlli e strumenti di supporto",
+    title: "Calcoli e conversioni",
+    shortTitle: "Calcoli e conversioni",
+    shortDescription:
+      "Usa strumenti per quantità, percentuali e conversioni, inclusa la diluizione alcolica, in base ai parametri disponibili.",
+    fullDescription:
+      "Gli strumenti eseguono ricalcoli aritmetici e conversioni usando i dati forniti o configurati. Non costituiscono una validazione generale della formula o dei dati di partenza.",
+    problemSolved:
+      "Riunisce calcoli di supporto utilizzabili durante la preparazione dei dati.",
+    howItWorks: [
+      "Ricalcolo di quantità e percentuali della composizione.",
+      "Conversioni basate sui parametri disponibili.",
+      "Calcolo della diluizione alcolica con i parametri configurati.",
+    ],
+    benefits: [],
+    icon: "Calculator",
+    relatedSlugs: ["fogli-lavorazione", "schede-tecniche", "controllo-capsule"],
   },
   {
     slug: "banca-dati-aifa",
-    title: "Banca Dati Farmaci AIFA & Carenze",
-    shortTitle: "Prontuario AIFA",
-    shortDescription: "Consultazione specialità medicinali, codici ATC, regimi di ricetta, carenze e download FI/RCP.",
-    fullDescription: "Modulo per la consultazione libera del prontuario dei farmaci autorizzati in Italia (AIFA). Ricerca istantaneamente per nome o principio attivo, verifica la classificazione ATC, i regimi di fornitura (RR, RNR, OSP, SOP, OTC), monitora lo stato dei farmaci carenti e scarica direttamente Foglietto Illustrativo (FI) e RCP.",
-    problemSolved: "Fornisce al farmacista preparatore uno strumento immediato per verificare dosaggi, indicazioni e disponibilità commerciale di specialità medicinali da allestire come galenici in caso di carenza.",
+    category: "Controlli e strumenti di supporto",
+    title: "Ricerca farmaci online",
+    shortTitle: "Ricerca farmaci",
+    shortDescription:
+      "Cerca online e consulta o esporta le informazioni rese disponibili dal servizio al momento della ricerca.",
+    fullDescription:
+      "La ricerca online permette di consultare le informazioni disponibili attraverso il servizio collegato. Disponibilità e aggiornamento dipendono dalla fonte online.",
+    problemSolved:
+      "Offre un punto di accesso per consultare i risultati disponibili della ricerca farmaci.",
     howItWorks: [
-      "Ricerca rapida nel database farmaci AIFA con filtri su ATC e principi attivi",
-      "Visualizzazione del regime di dispensazione (ricetta medica ripetibile, non ripetibile, ospedaliera, ecc.)",
-      "Segnalazione dello stato di carenza sul mercato nazionale",
-      "Apertura e download con un clic del Foglietto Illustrativo e del Riassunto Caratteristiche Prodotto (RCP)",
+      "Ricerca online per farmaco o principio attivo.",
+      "Consultazione dei risultati disponibili, inclusi i dettagli mostrati dal servizio.",
+      "Esportazione delle informazioni consultabili.",
     ],
-    benefits: [
-      "Supporto decisivo nell'allestimento di galenici per farmaci carenti",
-      "Verifica immediata del regime di ricetta richiesto",
-      "Consultazione di FI e RCP senza dover navigare su banche dati esterne",
-    ],
+    benefits: [],
     icon: "Pill",
     relatedSlugs: ["sostanze", "schede-tecniche", "fogli-lavorazione"],
   },
   {
-    slug: "fornitori",
-    title: "Archivio e Registro Fornitori",
-    shortTitle: "Fornitori",
-    shortDescription: "Anagrafica produttori e distributori con storico carichi e credenziali di accesso sicure.",
-    fullDescription: "Archivio centralizzato per tutti i fornitori di materie prime, eccipienti e materiali di confezionamento. Gestisci recapiti, partita IVA, contatti tecnici e credenziali per il download automatico dei documenti protette nel portachiavi di sistema.",
-    problemSolved: "Centralizza le informazioni di contatto e la qualifica dei fornitori in un unico registro invece di rubriche sparse o rubriche personali.",
+    slug: "riepilogo-dopanti",
+    category: "Controlli e strumenti di supporto",
+    title: "Riepilogo preparazioni con sostanze dopanti",
+    shortTitle: "Riepilogo dopanti",
+    shortDescription:
+      "Consulta aggregazioni annuali, anomalie e annotazioni dello stato dichiarato dall'operatore.",
+    fullDescription:
+      "Il riepilogo raccoglie i dati disponibili e permette di registrare internamente uno stato dichiarato dall'operatore. Non invia comunicazioni alle autorità né verifica i riferimenti inseriti.",
+    problemSolved:
+      "Aiuta a consultare le informazioni annuali disponibili e le anomalie da verificare.",
     howItWorks: [
-      "Anagrafica fornitore con contatti commerciali, tecnici, email e PEC",
-      "Integrazione con le credenziali per il download automatico di certificati e schede di sicurezza",
-      "Storico carichi e sostanze fornite da ciascun distributore",
-      "Consultazione immediata dei listini e dei riferimenti operativi",
+      "Consultazione del riepilogo per anno.",
+      "Esame delle anomalie evidenziate.",
+      "Registrazione interna dello stato dichiarato dall'operatore.",
     ],
-    benefits: [
-      "Qualifica trasparente e tracciabile dei fornitori del laboratorio",
-      "Credenziali protette dal portachiavi nativo del sistema operativo",
-      "Pieno controllo della catena di fornitura farmaceutica",
+    benefits: [],
+    icon: "ShieldAlert",
+    relatedSlugs: ["registro-sostanze", "fogli-lavorazione"],
+  },
+  {
+    slug: "utenti-configurazioni",
+    category: "Gestione e sicurezza",
+    title: "Utenti e configurazioni",
+    shortTitle: "Utenti e configurazioni",
+    shortDescription:
+      "Gestisci gli account associati alla farmacia e configura i dati della farmacia e del laboratorio.",
+    fullDescription:
+      "La gestione comprende account e impostazioni disponibili nell'applicazione. Le funzionalità di accesso dipendono dalla configurazione e non rappresentano una promessa di autorizzazioni granulari per ogni operazione.",
+    problemSolved:
+      "Raccoglie in un'unica area la gestione degli account e delle impostazioni del laboratorio.",
+    howItWorks: [
+      "Gestione degli account associati alla farmacia.",
+      "Configurazione dei dati della farmacia e dei parametri del laboratorio.",
+      "Accesso alle impostazioni disponibili in base alla configurazione.",
     ],
-    icon: "Truck",
-    relatedSlugs: ["sostanze", "documentazione", "giacenze"],
+    benefits: [],
+    icon: "ShieldAlert",
+    relatedSlugs: ["backup-ripristino", "uso-multi-postazione"],
+  },
+  {
+    slug: "backup-ripristino",
+    category: "Gestione e sicurezza",
+    title: "Backup e ripristino",
+    shortTitle: "Backup e ripristino",
+    shortDescription:
+      "Gestisci backup manuali o programmati e avvia le procedure amministrative di ripristino.",
+    fullDescription:
+      "Le impostazioni permettono di consultare e verificare gli archivi disponibili. Il ripristino sostituisce i dati inclusi nell'archivio selezionato e richiede una procedura amministrativa.",
+    problemSolved:
+      "Rende disponibili le operazioni di gestione delle copie e di ripristino dagli archivi.",
+    howItWorks: [
+      "Avvio manuale o programmazione dei backup.",
+      "Consultazione e verifica degli archivi disponibili.",
+      "Avvio della procedura amministrativa di ripristino.",
+    ],
+    benefits: [],
+    icon: "FolderArchive",
+    relatedSlugs: ["utenti-configurazioni", "uso-multi-postazione"],
+  },
+  {
+    slug: "uso-multi-postazione",
+    category: "Gestione e sicurezza",
+    title: "Uso da più postazioni",
+    shortTitle: "Più postazioni",
+    shortDescription:
+      "L'uso da più postazioni richiede un database MongoDB condiviso e una configurazione adeguata.",
+    fullDescription:
+      "Le postazioni possono utilizzare lo stesso ambiente configurato. La funzione non sincronizza automaticamente installazioni indipendenti e non prevede lavoro offline.",
+    problemSolved:
+      "Descrive i prerequisiti per usare il gestionale da più postazioni collegate allo stesso ambiente.",
+    howItWorks: [
+      "Configurazione delle postazioni per l'accesso a un database MongoDB condiviso.",
+      "Verifica dell'ambiente condiviso prima dell'utilizzo concorrente.",
+      "Nessuna sincronizzazione automatica tra installazioni indipendenti o uso offline.",
+    ],
+    benefits: [],
+    icon: "Boxes",
+    relatedSlugs: ["utenti-configurazioni", "backup-ripristino"],
+  },
+  {
+    slug: "modifiche-registrate",
+    category: "Gestione e sicurezza",
+    title: "Modifiche registrate",
+    shortTitle: "Modifiche registrate",
+    shortDescription:
+      "Consulta e filtra gli eventi di modifica registrati dall'applicazione ed esporta il report.",
+    fullDescription:
+      "La vista mostra gli eventi disponibili nei percorsi applicativi che li registrano. Non equivale a un audit completo di ogni modifica o operazione.",
+    problemSolved:
+      "Aiuta a consultare gli eventi di modifica raccolti nei report disponibili.",
+    howItWorks: [
+      "Consultazione paginata e filtrata degli eventi registrati.",
+      "Visualizzazione delle statistiche disponibili.",
+      "Esportazione del report.",
+    ],
+    benefits: [],
+    icon: "ShieldAlert",
+    relatedSlugs: ["utenti-configurazioni"],
   },
 ];
+
+export const FEATURES_BY_CATEGORY = FEATURE_CATEGORIES.map((category) => ({
+  category,
+  features: FEATURES.filter((feature) => feature.category === category),
+})).filter(({ features }) => features.length > 0);
+
+export const FEATURE_HIGHLIGHTS = [
+  {
+    title: "Materie prime",
+    description:
+      "Consulta il catalogo e gestisci anagrafiche personali, formati e fornitori.",
+    icon: "FlaskConical",
+    categories: [FEATURE_CATEGORIES[0]],
+  },
+  {
+    title: "Registrazione e tracciabilità",
+    description:
+      "Registra acquisti, lotti e movimenti, e consulta le giacenze del laboratorio.",
+    icon: "ClipboardCheck",
+    categories: [FEATURE_CATEGORIES[1]],
+  },
+  {
+    title: "Preparazioni galeniche",
+    description:
+      "Organizza procedure, schede tecniche e fogli di lavorazione magistrali e officinali.",
+    icon: "FileSpreadsheet",
+    categories: [FEATURE_CATEGORIES[2]],
+  },
+  {
+    title: "Tariffazione e gestione",
+    description:
+      "Prepara preventivi e consulta strumenti, documenti e impostazioni del gestionale.",
+    icon: "Calculator",
+    categories: [
+      FEATURE_CATEGORIES[3],
+      FEATURE_CATEGORIES[4],
+      FEATURE_CATEGORIES[5],
+      FEATURE_CATEGORIES[6],
+    ],
+  },
+] satisfies {
+  title: string;
+  description: string;
+  icon: string;
+  categories: FeatureCategory[];
+}[];
