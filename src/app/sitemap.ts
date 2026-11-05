@@ -16,8 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/assistenza/guide",
     "/assistenza/video",
     "/assistenza/faq",
-    "/risorse",
-    "/blog",
     "/chi-siamo",
     "/contatti",
     "/privacy",

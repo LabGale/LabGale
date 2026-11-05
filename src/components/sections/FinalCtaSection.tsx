@@ -37,7 +37,7 @@ export function FinalCtaSection() {
             href="/assistenza/guide"
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto bg-slate-800 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-white"
+            className="w-full sm:w-auto !bg-white !border-slate-300 !text-slate-900 hover:!bg-slate-100 hover:!text-black"
           >
             Guida all'installazione
           </Button>

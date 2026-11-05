@@ -15,15 +15,11 @@ import {
 export const metadata: Metadata = {
   title: `Il Gestionale Galenico | ${SITE_CONFIG.productName}`,
   description:
-    "Scopri LabGale, il software desktop per la gestione del laboratorio galenico: funzionalità, architettura del database e sistemi operativi supportati.",
+    `Scopri ${SITE_CONFIG.productName}, il software desktop per la gestione del laboratorio galenico: funzionalità, architettura del database e sistemi operativi supportati.`,
 };
 
 export default function SoftwarePage() {
   const productName = SITE_CONFIG.productName;
-
-  const availablePlatforms = CURRENT_RELEASE.platforms.filter(
-    (platform) => platform.isAvailable
-  );
 
   return (
     <>
@@ -42,10 +38,10 @@ export default function SoftwarePage() {
 
             <p className="text-body-lg text-content-secondary leading-relaxed">
               {productName} è un software desktop dedicato alla gestione
-              del laboratorio galenico. Aiuta il farmacista a organizzare
-              materie prime, schede tecniche, fogli di lavorazione, registri
-              e documentazione, supportando le attività previste dalle
-              Norme di Buona Preparazione.
+              del laboratorio galenico. Il gestionale mette a disposizione
+              strumenti per organizzare le attività del laboratorio e
+              supportare la gestione della documentazione e dei controlli
+              previsti dalle procedure della farmacia.
             </p>
           </section>
 
@@ -61,10 +57,9 @@ export default function SoftwarePage() {
               </h2>
 
               <p className="text-body-md text-content-secondary leading-relaxed">
-                È un'applicazione informatica specializzata che permette
-                di gestire in modo integrato le materie prime, le schede
-                tecniche, i fogli di lavorazione, i registri e la
-                documentazione del laboratorio galenico.
+                È un'applicazione desktop specializzata per la gestione del
+                laboratorio galenico, con strumenti per le materie prime,
+                la documentazione e i fogli di lavorazione.
               </p>
             </Card>
 
@@ -78,8 +73,7 @@ export default function SoftwarePage() {
 
               <p className="text-body-md text-content-secondary leading-relaxed">
                 È rivolto alle farmacie aperte al pubblico e alle farmacie
-                ospedaliere che dispongono di un laboratorio galenico,
-                indipendentemente dal volume di preparazioni effettuate.
+                ospedaliere dotate di un laboratorio galenico.
               </p>
             </Card>
 
@@ -93,10 +87,8 @@ export default function SoftwarePage() {
 
               <p className="text-body-md text-content-secondary leading-relaxed">
                 È un'applicazione desktop che viene installata sul computer
-                della farmacia. Utilizza un database MongoDB configurabile
-                localmente oppure su un'infrastruttura remota compatibile.
-                Non richiede un servizio cloud gestito da {productName}{" "}
-                né un abbonamento obbligatorio.
+                della farmacia e si collega a un database MongoDB
+                configurabile.
               </p>
             </Card>
 
@@ -123,8 +115,8 @@ export default function SoftwarePage() {
           <section className="bg-white border border-border-subtle rounded-xl p-8 md:p-12 shadow-sm space-y-8">
             <SectionHeading
               badge="Architettura e gestione dei dati"
-              title="MongoDB locale oppure database remoto"
-              subtitle="La farmacia può scegliere autonomamente dove archiviare le proprie informazioni, in base alla propria organizzazione e alle esigenze operative."
+              title="Un database, due possibilità di configurazione"
+              subtitle="MongoDB può essere installato nell'infrastruttura locale della farmacia oppure configurato su un'infrastruttura remota compatibile."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -137,18 +129,15 @@ export default function SoftwarePage() {
                 </h3>
 
                 <p className="text-body-md text-content-secondary leading-relaxed">
-                  Installando MongoDB sull'infrastruttura della farmacia,
-                  le informazioni possono essere conservate localmente.
-                  Questa configurazione consente di lavorare anche senza
-                  una connessione Internet, purché il database e i servizi
-                  necessari siano disponibili sul computer o sulla rete
-                  locale.
+                  MongoDB può essere installato sui computer o sui server
+                  dell'infrastruttura locale della farmacia e configurato
+                  per l'uso del gestionale.
                 </p>
 
                 <p className="text-body-sm text-content-muted leading-relaxed">
-                  La farmacia mantiene la responsabilità della sicurezza
-                  del sistema, della gestione degli accessi e della
-                  realizzazione dei backup.
+                  Il funzionamento senza Internet dipende dalla
+                  configurazione locale, dalla rete e dai servizi necessari:
+                  non è garantito in ogni scenario.
                 </p>
               </div>
 
@@ -160,18 +149,14 @@ export default function SoftwarePage() {
                 </h3>
 
                 <p className="text-body-md text-content-secondary leading-relaxed">
-                  Per le farmacie che utilizzano più postazioni di lavoro,
-                  è possibile configurare un database MongoDB remoto,
-                  ad esempio attraverso MongoDB Atlas o un'altra
-                  infrastruttura compatibile.
+                  In alternativa, è possibile configurare MongoDB su
+                  un'infrastruttura remota, ad esempio MongoDB Atlas o un
+                  altro servizio compatibile.
                 </p>
 
                 <p className="text-body-sm text-content-muted leading-relaxed">
-                  Le diverse installazioni possono collegarsi allo stesso
-                  database, consentendo di condividere le informazioni
-                  tra le postazioni. La configurazione, la protezione
-                  delle credenziali e la gestione del servizio remoto
-                  rimangono a carico della farmacia.
+                  Più postazioni possono collegarsi allo stesso database
+                  previa corretta configurazione.
                 </p>
               </div>
 
@@ -179,11 +164,9 @@ export default function SoftwarePage() {
 
             <div className="border-t border-border-subtle pt-6">
               <p className="text-body-sm text-content-muted leading-relaxed">
-                {productName} non gestisce automaticamente i database
-                delle farmacie e non dispone di accesso automatico
-                alle informazioni archiviate. La farmacia mantiene
-                il controllo sulla propria infrastruttura e sulle
-                modalità di conservazione dei dati.
+                La farmacia è responsabile della gestione
+                dell'infrastruttura, degli accessi e dei backup, qualunque
+                sia la configurazione scelta.
               </p>
             </div>
           </section>
@@ -193,16 +176,20 @@ export default function SoftwarePage() {
           <section className="space-y-6">
             <SectionHeading
               title="Sistemi operativi supportati"
-              subtitle="Scegli la versione compatibile con il tuo computer. I pacchetti disponibili possono essere scaricati direttamente da questa pagina."
+              subtitle="Il gestionale è sviluppato per Windows, macOS e Linux. Consulta lo stato delle release per verificare le versioni disponibili e i relativi requisiti."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {CURRENT_RELEASE.platforms.map((platform) => {
-                const isMac = platform.os === "macos";
-                const isDownloadable =
-                  platform.isAvailable &&
-                  platform.downloadUrl !== "#" &&
-                  platform.downloadUrl.trim() !== "";
+                const hasDownloadUrl =
+                  platform.downloadUrl.trim() !== "" &&
+                  platform.downloadUrl !== "#";
+                const isDownloadable = platform.isAvailable && hasDownloadUrl;
+                const availabilityMessage = isDownloadable
+                  ? "Release disponibile"
+                  : platform.isAvailable
+                    ? "Release disponibile, download non configurato"
+                    : "Release non disponibile";
 
                 return (
                   <Card
@@ -222,7 +209,7 @@ export default function SoftwarePage() {
                             : "text-content-muted bg-slate-100 border-border-subtle"
                         }`}
                       >
-                        {isDownloadable ? "Disponibile" : "In arrivo"}
+                        {availabilityMessage}
                       </span>
                     </div>
 
@@ -231,16 +218,10 @@ export default function SoftwarePage() {
                         {platform.architecture}
                       </p>
                       <p className="text-body-sm text-content-muted">
+                        {isDownloadable ? "Formato" : "Formato previsto"}:{" "}
                         {platform.installerType}
                       </p>
                     </div>
-
-                    {isMac && (
-                      <p className="text-body-sm text-content-secondary">
-                        Compatibile esclusivamente con Mac dotati di processore
-                        Apple Silicon (M1 e successivi). Non supporta Mac Intel.
-                      </p>
-                    )}
 
                     <ul className="space-y-2 text-body-sm text-content-secondary">
                       {platform.requirements.map((requirement, index) => (
@@ -256,9 +237,11 @@ export default function SoftwarePage() {
                         Versione {CURRENT_RELEASE.version}
                       </p>
 
-                      <p className="text-body-sm text-content-muted">
-                        Dimensione: {platform.fileSize}
-                      </p>
+                      {isDownloadable && (
+                        <p className="text-body-sm text-content-muted">
+                          Dimensione: {platform.fileSize}
+                        </p>
+                      )}
 
                       {isDownloadable ? (
                         <a
@@ -270,7 +253,9 @@ export default function SoftwarePage() {
                         </a>
                       ) : (
                         <span className="flex items-center justify-center w-full rounded-lg bg-slate-100 text-content-muted font-semibold py-3 px-4">
-                          Disponibile prossimamente
+                          {platform.isAvailable
+                            ? "Download non configurato"
+                            : "Release non disponibile"}
                         </span>
                       )}
                     </div>

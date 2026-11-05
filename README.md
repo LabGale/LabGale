@@ -95,7 +95,8 @@ sito_gestionale_laboratorio/
 ├── public/                       # File statici serviti direttamente dal web
 │   ├── assets/
 │   │   └── screenshots/          # Inserisci qui gli screenshot reali dell'app
-│   └── robots.txt                # Istruzioni per i motori di ricerca
+│   ├── robots.txt                # Istruzioni per i motori di ricerca
+│   └── _redirects                # Redirect permanenti per Cloudflare Pages
 │
 ├── src/
 │   ├── config/                   # ⚙️ CONFIGURAZIONI GLOBALI (Single Source of Truth)
@@ -106,8 +107,7 @@ sito_gestionale_laboratorio/
 │   │   ├── features.data.ts      # Le 8 funzionalità ufficiali (testi, problemi risolti)
 │   │   ├── releases.data.ts      # Versioni, link installer (.exe, .dmg), requisiti e SHA-256
 │   │   ├── faq.data.ts           # Domande e risposte frequenti
-│   │   ├── guides.data.ts        # Guide passo-passo per il centro assistenza
-│   │   └── blog.data.ts          # Articoli del blog di laboratorio
+│   │   └── guides.data.ts        # Guide passo-passo per il centro assistenza
 │   │
 │   ├── components/               # 🧩 COMPONENTI RIUTILIZZABILI
 │   │   ├── layout/               # Header, Footer
@@ -123,8 +123,6 @@ sito_gestionale_laboratorio/
 │   │   ├── scarica/page.tsx      # Pagina Download
 │   │   ├── perche-gratuito/page.tsx # Pagina Trasparenza & Gratuità
 │   │   ├── assistenza/           # Guide, Video, FAQ
-│   │   ├── risorse/page.tsx      # Risorse normative per galenica
-│   │   ├── blog/page.tsx         # Articoli di approfondimento
 │   │   ├── chi-siamo/page.tsx    # Origine del progetto
 │   │   ├── contatti/page.tsx     # Modulo di contatto
 │   │   ├── privacy/page.tsx      # Privacy Policy GDPR
@@ -154,7 +152,6 @@ Non è necessario modificare il codice HTML delle singole pagine per cambiare te
 | **Descrizione delle 8 funzionalità** | `src/data/features.data.ts` |
 | **Domande frequenti (FAQ)** | `src/data/faq.data.ts` |
 | **Guide e istruzioni di installazione** | `src/data/guides.data.ts` |
-| **Articoli del blog** | `src/data/blog.data.ts` |
 | **Link e versioni dei file scaricabili** | `src/data/releases.data.ts` |
 
 ---

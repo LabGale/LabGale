@@ -1,3 +1,4 @@
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -7,62 +8,74 @@ export interface FaqItem {
 export const FAQ_ITEMS: FaqItem[] = [
   {
     category: "costi",
-    question: "Il gestionale è davvero gratuito? Ci sono costi nascosti o limitazioni a tempo?",
-    answer: "Sì, il gestionale è gratuito per l'utilizzo in farmacia. Non ci sono costi di licenza, canoni mensili, limiti sul numero di preparazioni inseribili né scadenze temporali di prova. Scarichi l'applicazione, la colleghi al tuo database e la utilizzi liberamente per il tuo laboratorio.",
+    question: "Il gestionale è gratuito? Sono previsti canoni o costi di licenza?",
+    answer:
+      "Sì, Gestionale Laboratorio è distribuito gratuitamente. Non è previsto un canone mensile per l'utilizzo del software. Per l'installazione e l'utilizzo possono essere necessari un computer compatibile e un database MongoDB, che la farmacia può gestire secondo la propria configurazione.",
   },
   {
     category: "costi",
     question: "Perché il software viene distribuito gratuitamente?",
-    answer: "Crediamo che la digitalizzazione, la conformità NBP e la sicurezza del laboratorio galenico debbano essere accessibili a ogni farmacia, senza costringere a sostenere canoni elevati per applicativi spesso obsoleti o rigidi. L'obiettivo è offrire uno strumento di lavoro moderno, flessibile ed eccellente.",
+    answer:
+      "Il progetto nasce con l'obiettivo di mettere a disposizione delle farmacie uno strumento informatico dedicato alla gestione del laboratorio galenico, accessibile anche alle realtà più piccole. Vogliamo offrire un gestionale pratico e in continua evoluzione, senza costi di licenza o canoni periodici.",
   },
   {
     category: "prodotto",
-    question: "Come funziona la gestione del database? È in locale o in cloud?",
-    answer: "Il software offre piena libertà architetturale: puoi utilizzare MongoDB installato in locale sul computer del laboratorio (ideale per garantire funzionamento offline, massima velocità e totale riservatezza dei dati dei pazienti sul tuo disco), oppure puoi configurare in autonomia una connessione al tuo cluster MongoDB Atlas (in cloud), se desideri sincronizzare più postazioni o gestire il database da remoto.",
+    question: "Come funziona il database? I dati sono salvati in locale o in cloud?",
+    answer:
+      "Il gestionale utilizza MongoDB e può essere configurato per collegarsi a un database installato localmente oppure a un'istanza remota, ad esempio MongoDB Atlas. La scelta dipende dall'organizzazione della farmacia e dall'infrastruttura disponibile. Una configurazione remota può consentire l'accesso al database da più postazioni, se correttamente predisposta.",
   },
   {
     category: "installazione",
     question: "Quali sistemi operativi sono supportati?",
-    answer: "L'applicazione è sviluppata con tecnologia desktop multipiattaforma ed è disponibile per Windows (Windows 10 e Windows 11 a 64 bit), macOS (sia per Mac con processori Apple Silicon sia per Mac con processori Intel) e per le principali distribuzioni Linux (Ubuntu, Debian, Fedora, ecc.).",
+    answer:
+      "Il gestionale è sviluppato come applicazione desktop multipiattaforma, con supporto previsto per Windows, macOS e Linux. La disponibilità degli installer può variare in base alla versione e al sistema operativo: consulta la pagina Download per verificare le release effettivamente disponibili.",
   },
   {
     category: "prodotto",
-    question: "Come vengono protette le credenziali e le password dei fornitori?",
-    answer: "La sicurezza è curata nel dettaglio: le credenziali per il download automatico dai portali dei fornitori (ACEF, Fagron, Galeno, Farmalabor, Farmarete, Esperis) e gli URI di connessione a MongoDB non sono salvati in chiaro, ma vengono custoditi nel portachiavi nativo del sistema operativo (Keychain su macOS, Credential Manager su Windows). Le password degli utenti sono protette da hashing crittografico con bcrypt.",
+    question: "Come vengono gestite le credenziali e le password?",
+    answer:
+      "Il gestionale prevede la gestione degli utenti e delle credenziali necessarie per utilizzare le diverse funzioni. Le modalità di protezione dipendono dal tipo di credenziale e dalla configurazione utilizzata. È comunque importante proteggere il computer, l'accesso al database e le credenziali dei servizi esterni.",
   },
   {
     category: "prodotto",
-    question: "Come funziona il backup dei dati per prevenire perdite accidentali?",
-    answer: "Il gestionale integra un runtime di backup automatico in background con schedulazione periodica. Inoltre, intercetta l'evento di chiusura dell'applicazione per eseguire un backup di sicurezza prima di uscire dalla finestra, con procedura di ripristino (restore) e audit log integrati.",
+    question: "È possibile effettuare il backup e il ripristino dei dati?",
+    answer:
+      "Sì, il gestionale mette a disposizione funzioni per il backup e il ripristino del database. È consigliabile predisporre una strategia di backup regolare, conservare copie in una posizione sicura e verificare periodicamente che i dati possano essere ripristinati correttamente.",
   },
   {
     category: "normativa",
-    question: "Il software rispetta le Norme di Buona Preparazione (NBP) della Farmacopea Ufficiale?",
-    answer: "Assolutamente sì. Tutti i flussi operativi (tracciabilità dei lotti di materie prime, fattori di correzione, fogli di lavorazione magistrali e officinali, conservazione per 6 mesi dei certificati di analisi dopo la chiusura del lotto e controlli obbligatori) sono stati progettati specificamente per aderire ai requisiti rigorosi delle Norme di Buona Preparazione.",
+    question: "Il gestionale garantisce la conformità alle Norme di Buona Preparazione (NBP)?",
+    answer:
+      "Il gestionale include strumenti pensati per supportare l'organizzazione e la documentazione delle attività del laboratorio galenico, tra cui la gestione delle materie prime, delle procedure, dei fogli di lavorazione e dei controlli. Il software non sostituisce le procedure operative della farmacia né la verifica degli obblighi previsti dalla normativa: la corretta applicazione delle NBP resta responsabilità del farmacista.",
   },
   {
     category: "normativa",
-    question: "Include strumenti per i controlli di qualità (ad esempio per le capsule)?",
-    answer: "Sì. È presente un modulo dedicato al controllo di uniformità di massa per capsule rigide secondo i criteri della Farmacopea Ufficiale: campiona 20 capsule, calcola media, deviazione standard, RSD (coefficiente di variazione), verifica il rispetto delle tolleranze del ±5% e ±10% ed emette automaticamente il verbale di controllo qualità in formato PDF.",
+    question: "Sono disponibili strumenti per i controlli di qualità delle capsule?",
+    answer:
+      "Sì, è presente un modulo dedicato al controllo delle capsule rigide. Il modulo consente di registrare le pesate, calcolare i principali parametri statistici, come media, deviazione standard e RSD, e confrontare i risultati con le tolleranze impostate. È inoltre possibile generare un documento PDF con i risultati del controllo. La valutazione finale deve essere effettuata dal farmacista secondo le procedure applicabili.",
   },
   {
     category: "normativa",
-    question: "È possibile stampare etichette galeniche su stampante termica?",
-    answer: "Sì, il gestionale include un modulo dedicato per la stampa su rotolo termico (formato standard 57×31 mm). Il software effettua una validazione preventiva e blocca la stampa se rileva la mancanza di dati obbligatori per legge (avvertenze, data limite di utilizzo, prezzo, posologia), permettendo di scegliere tra diversi template grafici e stampare anche codici QR.",
+    question: "È possibile stampare etichette galeniche con una stampante termica?",
+    answer:
+      "Sì, il gestionale include una funzione per la stampa di etichette su rotolo termico, con supporto per il formato 57 × 31 mm. Sono disponibili modelli grafici e la possibilità di riportare le informazioni previste dal modello di etichetta. Prima della stampa è importante verificare che i dati inseriti siano completi e corretti e che l'etichetta rispetti le disposizioni applicabili alla preparazione.",
   },
   {
     category: "normativa",
-    question: "È presente il modulo per il resoconto annuale delle sostanze dopanti?",
-    answer: "Sì. Il software traccia in automatico tutte le sostanze soggette a disciplina antidoping (Legge 376/2000) impiegate durante l'anno e genera il prospetto riepilogativo per la trasmissione annuale al Ministero della Salute.",
+    question: "Il gestionale supporta la gestione delle sostanze soggette alla normativa antidoping?",
+    answer:
+      "Sì, è disponibile un modulo per supportare l'individuazione e il riepilogo delle sostanze soggette alla normativa antidoping, con strumenti di consultazione e reportistica. Il riepilogo prodotto dal gestionale può essere utilizzato come supporto per gli adempimenti della farmacia, ma i dati devono essere verificati prima della trasmissione agli enti competenti.",
   },
   {
     category: "installazione",
-    question: "Durante l'installazione su Windows o macOS appare un avviso di sicurezza: cosa significa?",
-    answer: "Trattandosi di un'applicazione indipendente non ancora firmata con costosi certificati commerciali a pagamento, Windows SmartScreen o macOS Gatekeeper potrebbero mostrare un avviso informativo al primo avvio. È sufficiente selezionare 'Ulteriori informazioni' e poi 'Esegui comunque' su Windows, oppure autorizzare l'applicazione dalle impostazioni di 'Privacy e Sicurezza' su macOS.",
+    question: "Durante l'installazione su Windows o macOS compare un avviso di sicurezza: cosa devo fare?",
+    answer:
+      "Alcuni sistemi operativi possono mostrare avvisi quando si installa o si avvia un'applicazione scaricata da Internet, soprattutto se non dispone di tutte le certificazioni di firma richieste dalla piattaforma. Prima di autorizzare l'esecuzione, verifica sempre che il file provenga dal sito ufficiale e che corrisponda alla versione pubblicata nella pagina Download. Le procedure per autorizzare l'applicazione possono variare in base al sistema operativo.",
   },
   {
     category: "installazione",
-    question: "Quali sono i requisiti di sistema minimi consigliati?",
-    answer: "Il software è leggero e reattivo. Richiede un normale computer con almeno 4 GB di RAM, un processore a 64 bit, circa 200 MB di spazio su disco fisso e l'accesso a un database MongoDB (installato in locale su porta 27017 o su un'istanza MongoDB Atlas cloud configurabile al primo avvio).",
+    question: "Quali sono i requisiti minimi per utilizzare il gestionale?",
+    answer:
+      "È necessario un computer compatibile con la versione del gestionale utilizzata e una connessione al database MongoDB configurato per la farmacia. I requisiti possono variare in base al sistema operativo, al numero di postazioni e alla configurazione del database. Consulta le informazioni associate alla release nella pagina Download prima dell'installazione.",
   },
 ];
